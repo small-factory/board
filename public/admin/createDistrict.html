@@ -1,0 +1,560 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Small Factory</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="/admin/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/admin/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="/admin/css/_all-skins.min.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  <header class="main-header">
+    <!-- Logo -->
+    <a href="#" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b>S</b>F</span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>Small</b>Factory</span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+      <!-- Sidebar toggle button-->
+      <i class="material-icons" id="sidebar-toggle" data-toggle="push-menu" role="button" style="color: #fff; margin:10px;font-size:30px;">arrow_back</i>
+
+
+<!-- jQuery 3 -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- Messages: style can be found in dropdown.less-->
+          <li class="dropdown messages-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="material-icons">mail_outline</i>
+              <span class="label label-success">4</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">You have 4 messages</li>
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                  <li><!-- start message -->
+                    <a href="#">
+                      <h4>
+                        One
+                        <small><i class="material-icons">access_time</i> 5 mins</small>
+                      </h4>
+                      <p>....</p>
+                    </a>
+                  </li>
+                  <!-- end message -->
+                  <li>
+                    <a href="#">
+                     
+                      <h4>
+                        Two
+                        <small><i class="material-icons">access_time</i> 2 hours</small>
+                      </h4>
+                      <p>...</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <h4>
+                        Three
+                        <small><i class="material-icons">access_time</i> Today</small>
+                      </h4>
+                      <p>...</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <h4>
+                        Four
+                        <small><i class="material-icons">access_time</i> Yesterday</small>
+                      </h4>
+                      <p>...</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <h4>
+                        Five
+                        <small><i class="material-icons">access_time</i> 2 days</small>
+                      </h4>
+                      <p>..</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="footer"><a href="#">See All Messages</a></li>
+            </ul>
+          </li>
+          <!-- Tasks: style can be found in dropdown.less -->
+          <li class="dropdown tasks-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="material-icons">flag</i>
+              <span class="label label-danger">9</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">You have 9 tasks</li>
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                  <li><!-- Task item -->
+                    <a href="#">
+                      <h3>
+                        Design some buttons
+                        <small class="pull-right">20%</small>
+                      </h3>
+                      <div class="progress xs">
+                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                          <span class="sr-only">20% Complete</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <!-- end task item -->
+                  <li><!-- Task item -->
+                    <a href="#">
+                      <h3>
+                        Create a nice theme
+                        <small class="pull-right">40%</small>
+                      </h3>
+                      <div class="progress xs">
+                        <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                          <span class="sr-only">40% Complete</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <!-- end task item -->
+                  <li><!-- Task item -->
+                    <a href="#">
+                      <h3>
+                        Some task I need to do
+                        <small class="pull-right">60%</small>
+                      </h3>
+                      <div class="progress xs">
+                        <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                          <span class="sr-only">60% Complete</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <!-- end task item -->
+                  <li><!-- Task item -->
+                    <a href="#">
+                      <h3>
+                        Make beautiful transitions
+                        <small class="pull-right">80%</small>
+                      </h3>
+                      <div class="progress xs">
+                        <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                          <span class="sr-only">80% Complete</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <!-- end task item -->
+                </ul>
+              </li>
+              <li class="footer">
+                <a href="#">View all tasks</a>
+              </li>
+            </ul>
+          </li>
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="hidden-xs">
+
+
+
+
+
+                Admin
+
+
+
+
+
+              </span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+                <p style="background: #ffffff; color: #218CBF; border-radius: 50px; width:50px; height: 50px; text-align: center;
+                margin: 0 auto;font-size: 54px;line-height: 43px;">A</p>
+
+                <p>
+                  Admin
+                  <small>Member since Nov. 2012</small>
+                </p>
+              </li>
+              <!-- Menu Body -->
+              <li class="user-body">
+                <div class="row">
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Followers</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Sales</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Friends</a>
+                  </div>
+                </div>
+                <!-- /.row -->
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                </div>
+                <div class="pull-right">
+                  <a href="/logout.php" class="btn btn-default btn-flat">Sign out</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+          <li>
+            <a href="#" data-toggle="control-sidebar"><i class="material-icons">group_work</i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <p style="background: #218CBF; color: #ffffff; border-radius: 50px; width:50px; height: 50px; text-align: center;
+                margin: 0 auto;font-size: 54px;line-height: 43px;">A</p>
+        </div>
+        <div class="pull-left info">
+          <p>
+
+
+
+            Admin
+
+
+
+
+
+
+          </p>
+          <a href="#"><i class="material-icons" style="font-size: 12px;">thumb_up</i> Logged in</a>
+        </div>
+      </div>
+
+      <!-- /.search form -->
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">MAIN NAVIGATION</li>
+        
+        
+        <li class="treeview">
+          <a href="#">
+            <i class="material-icons" style="font-size:16px; vertical-align: sub;">bar_chart</i>
+            <span>Charts</span>
+            <span class="pull-right-container">
+              <i class="material-icons" style="font-size:16px; vertical-align: sub;">chevron_left</i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#">
+              <i class="material-icons text-aqua" style="font-size:16px; vertical-align: sub;" >radio_button_unchecked</i> Projects</a></li>
+            <li><a href="#">
+            <i class="material-icons text-green" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> Completed Projects</a></li>
+            <li><a href="#">
+            <i class="material-icons text-yellow" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> Categories</a></li>
+            <li><a href="#">
+            <i class="material-icons text-red" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> Students</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="material-icons" style="font-size:16px; vertical-align: sub;">laptop</i>
+            <span>Students</span>
+            <span class="pull-right-container">
+              <i class="material-icons" style="font-size:16px; vertical-align: sub;">chevron_left</i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#">
+            <i class="material-icons text-aqua" style="font-size:16px; vertical-align: sub;" >radio_button_unchecked</i> View All Students</a></li>
+            <li><a href="/admin/addStudent">
+              <i class="material-icons text-green" style="font-size:16px; vertical-align: sub;" >radio_button_unchecked</i> Add A Student</a></li>
+            <li><a href="#">
+            <i class="material-icons text-yellow" style="font-size:16px; vertical-align: sub;" >radio_button_unchecked</i> Student by Points</a></li>
+            <li><a href="#">
+            <i class="material-icons text-red" style="font-size:16px; vertical-align: sub;" >radio_button_unchecked</i> Most Active Students</a></li>
+            <li><a href="#">
+            <i class="material-icons text-blue" style="font-size:16px; vertical-align: sub;" >radio_button_unchecked</i> Star Students</a></li>
+            <li><a href="#">
+            <i class="material-icons text-purple" style="font-size:16px; vertical-align: sub;" >radio_button_unchecked</i> Newest Students</a></li>
+          </ul>
+        </li>
+        
+       
+  
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="material-icons" style="font-size:16px; vertical-align: sub;">mouse</i> <span>Multilevel</span>
+            <span class="pull-right-container">
+              <i class="material-icons" style="font-size:16px; vertical-align: sub;">chevron_left</i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#"><i class="material-icons text-aqua" style="font-size:16px; vertical-align: sub;" >radio_button_unchecked</i> Level One</a></li>
+            <li class="treeview">
+              <a href="#"><i class="material-icons text-aqua" style="font-size:16px; vertical-align: sub;" >radio_button_unchecked</i> Level One
+                <span class="pull-right-container">
+                  <i class="material-icons" style="font-size:16px; vertical-align: sub;">chevron_left</i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="#"><i class="material-icons" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> Level Two</a></li>
+                <li class="treeview">
+                  <a href="#"><i class="material-icons text-yellow" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> Level Two
+                    <span class="pull-right-container">
+                      <i class="material-icons" style="font-size:16px; vertical-align: sub;">chevron_left</i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu">
+                    <li><a href="#"><i class="material-icons" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> Level Three</a></li>
+                    <li><a href="#"><i class="material-icons" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> Level Three</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#"><i class="material-icons text-red" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> Level One</a></li>
+          </ul>
+        </li>
+        <li class="header">Important Links</li>
+         <li><a href="/admin/createDistrict"><i class="material-icons text-blue" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> <span>Create a District</span></a></li>
+        <li><a href="/admin/createBoard"><i class="material-icons text-red" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> <span>Create a Teacher Board</span></a></li>
+        <li><a href="#"><i class="material-icons text-red" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> <span>Important</span></a></li>
+        <li><a href="#"><i class="material-icons text-yellow" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> <span>Warning</span></a></li>
+        <li><a href="#"><i class="material-icons text-aqua" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> <span>Information</span></a></li>
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    
+
+    <!-- Main content -->
+    <section class="content">
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Add a District</h3>
+
+              <div class="box-tools pull-right">
+               
+                <div class="btn-group">
+                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+                   <i class="material-icons text-red" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i></button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                  </ul>
+                </div>
+                
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              
+                  <form method="post" action=""> 
+                    <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="district">District Name</label>
+                  <input type="text" class="form-control" id="district" name="district" placeholder="Enter district">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="contact">Contact Name</label>
+                  <input type="text" class="form-control" id="contact" name="contact" placeholder="Enter Name">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <input type="submit" value="Add District" name="submit" class="btn btn-info btn-flat">
+                </div>
+              </form>
+                  <br/><br/>
+                </div>
+              <!-- /.row -->
+            </div>
+            <!-- ./box-body -->
+            
+            <!-- /.box-footer -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+      <!-- /.row -->
+      <link rel="stylesheet" href="https://adminlte.io/themes/AdminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css"/>
+      <script src="https://adminlte.io/themes/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+
+      <script src="https://adminlte.io/themes/AdminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+      <div class="box">
+            <div class="box-header">
+              <h2 class="box-title">All Districts</h2>
+              
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+             <div class="row"><div class="col-sm-12" style="margin-top:-30px;"><table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                <thead>
+                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 188px;">District Name</th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 231px;">Contact Name</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 205px;">Number of classes</th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 161px;">Number of Students</th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 116px;">Projects Completed</th></tr>
+                </thead>
+                <tbody>
+                                <tr role='row' style='cursor:pointer;' id='1' class='districtRow'><td>Fair Haven</td><td>John Smith</td><td>2</td><td>200</td><td>0</td></tr><tr role='row' style='cursor:pointer;' id='13' class='districtRow'><td>Avon</td><td>Another Chris</td><td>2</td><td>200</td><td>0</td></tr><tr role='row' style='cursor:pointer;' id='12' class='districtRow'><td>Oakhurst</td><td>Sally White</td><td>2</td><td>200</td><td>0</td></tr>              </tbody>
+              </table></div></div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.0
+    </div>
+    <strong>Copyright &copy; Small Factory
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+      <li><a href="#control-sidebar-home-tab" data-toggle="tab">Home</a></li>
+      <li><a href="#control-sidebar-settings-tab" data-toggle="tab">Gears</a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <!-- Home tab content -->
+      <div class="tab-pane" id="control-sidebar-home-tab">
+        <h3 class="control-sidebar-heading">One</h3>
+        
+        <!-- /.control-sidebar-menu -->
+
+      </div>
+      <!-- /.tab-pane -->
+      <!-- Stats tab content -->
+      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+      <!-- /.tab-pane -->
+      <!-- Settings tab content -->
+      <div class="tab-pane" id="control-sidebar-settings-tab">
+        <div>three</div>
+      </div>
+      <!-- /.tab-pane -->
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- Bootstrap 3.3.7 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+<script src="../js/adminlte.js"></script>
+<script src="../js/demo.js"></script>
+<style>
+.dataTables_length,
+.dataTables_info,
+.paging_simple_numbers {
+  display: none;
+}
+</style>
+<script>
+    $(function () {
+    $('#example1').DataTable()
+    // $('#example2').DataTable({
+    //   'paging'      : true,
+    //   'lengthChange': false,
+    //   'searching'   : false,
+    //   'ordering'    : true,
+    //   'info'        : true,
+    //   'autoWidth'   : false
+    // })
+
+    // $('table#example1').on('click', '.districtRow', function() {
+    //   var districtId = $(this).attr('id')
+    //   console.log('clicked a row', districtId);
+
+    //    $.ajax({
+    //     url: "district.php",
+    //     type: "post",
+    //     data: {id: districtId} ,
+    //     success: function (response) {
+    //          console.log(response)
+    //     },
+    //     error: function(jqXHR, textStatus, errorThrown) {
+    //        console.log(textStatus, errorThrown);
+    //     }
+
+
+    // });
+    })
+  $('#sidebar-toggle').click(function() {
+    var text = $(this).text();
+    console.log(text)
+    if ($(this).text() === 'arrow_back') {
+      $(this).text('arrow_forward')
+    } else  if ($(this).text() === 'arrow_forward') {
+      $(this).text('arrow_back')
+    }
+  })
+
+</script>
+
+<script>
+$('table#example1').on('click', '.districtRow', function() {
+      var districtId = $(this).attr('id')
+      console.log('clicked a row', districtId);
+    });
+</script>
+</body>
+</html>

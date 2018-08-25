@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Bare Realtor App | Login</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="/dist/css/login.css">
+
+  <link rel="icon" href="https://aerodefense.tech/wp-content/uploads/cropped-AeroDefense-icon-512x512-32x32.png" sizes="32x32" />
+  <link rel="icon" href="https://aerodefense.tech/wp-content/uploads/cropped-AeroDefense-icon-512x512-192x192.png" sizes="192x192" />
+  <link rel="apple-touch-icon-precomposed" href="https://aerodefense.tech/wp-content/uploads/cropped-AeroDefense-icon-512x512-180x180.png" />
+  <meta name="msapplication-TileImage" content="https://aerodefense.tech/wp-content/uploads/cropped-AeroDefense-icon-512x512-270x270.png" />
+  <!-- jQuery 3 -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+
+
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
+
+  <header class="main-header">
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+              <a href="/" class="navbar-brand" style="padding: 0;">
+                <span style="line-height:3;" class="animated infinite">
+                  bare realtor app
+                  <span></a>
+         
+        </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+          <ul class="nav navbar-nav" style="margin-left:10px;">
+            <li><a href="#">Home </a></li>
+            <li><a href="#">About <span class="sr-only">(current)</span></a></li>
+           
+          </ul>
+          
+        </div>
+        <!-- /.navbar-collapse -->
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search">
+            </div>
+          </form>
+        </div>
+        <!-- /.navbar-custom-menu -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+  </header>
+  <!-- Full Width Column -->
+  <div class="content-wrapper">
+    <h1 style="margin-top: 0px;padding-top: 20px; text-align:center">Please Log in</h1>
+    
+    <div style='width: 50%; min-width: 250px; margin-left: 25%;'>
+
+    <% if (message.length > 0) { %>
+        <div class="alert alert-danger"><%= message %></div>
+    <% } %>
+
+
+
+    <% if (message.length > 0) { %>
+        <div class="alert alert-danger"><%= message %></div>
+    <% } %>
+
+    <!-- LOGIN FORM -->
+    <form action="/login" method="post" style="background: #eeeeee;padding: 20px;border-radius: 5px;margin-top: -9px;border:1px solid #cccccc;">
+        <div class="form-group">
+            <label>Email</label>
+            <input type="text" class="form-control" name="email">
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password">
+        </div>
+
+        <button type="submit" class="btn btn-warning btn-lg">Login</button>
+    </form>
+<!-- form class='form-horizontal well' action='/login' method='post' style='margin-top:-10px;'>
+        <fieldset>
+            <legend>Login to Small Factory</legend>
+            <div class='form-group row' style='box-sizing: border-box;'>
+
+            <i class='col-lg-1 material-icons animated 2s jackInTheBox' id='sidebar-toggle' data-toggle='push-menu' role='button' style='color: #333; margin:10px 5px 10px -5px;font-size:40px;'>tag_faces</i>
+            <input type="text" placeholder='username' name='name' class='input-large col-lg-11' style='height: 40px; margin-top:10px;'>
+            </div>
+
+            <div class='form-group row'>
+              <i class='col-lg-1 material-icons' id='sidebar-toggle' data-toggle='push-menu' role='button' style='color: #333; margin:10px 5px 10px -5px;font-size:40px;'>lock</i>
+                <input type='password' placeholder='password' name='password' class='input-large col-lg-11' style='height: 40px;margin-top:10px;'>
+              </div>
+              
+
+            <div class='form-group' style='cursor:pointer; margin-left:10px;'>    
+                <input type='checkbox' name='r' value='1' id='r' style='cursor:pointer; height:22px; width: 22px;vertical-align: sub;'>
+                <label for='r' style='cursor:pointer;'> &nbsp; &nbsp; Remember Me</label>
+                
+            </div>
+
+            <input type='hidden' name='token' value='5de127e679153616ff01823912228a4f5a5537f5'>
+
+            <div class='control-group'>
+              <div class='controls'>
+
+              <button type='submit' id='submit' class='btn btn-primary'>Sign in</button>
+
+              <a href='?forget=1' class='btn btn-secondary' style='float: right;'>Forgot Password</a>
+
+              </div>
+            </div>
+          </fieldset>  </form>
+      </div> -->
+</div>
+
+
+<style>
+.owl {
+  margin: auto;
+  width: 211px;
+  height: 108px;
+  background-image: url("https://dash.readme.io/img/owl-login.png");
+  position: relative;
+}
+.owl .hand {
+  width: 34px;
+  height: 34px;
+  border-radius: 40px;
+  background-color: #472d20;
+  transform: scaleY(0.6);
+  position: absolute;
+  left: 14px;
+  bottom: -8px;
+  transition: 0.3s ease-out;
+}
+.owl .hand.password {
+  transform: translateX(42px) translateY(-15px) scale(0.7);
+}
+.owl .hand.hand-r {
+  left: 170px;
+}
+.owl .hand.hand-r.password {
+  transform: translateX(-42px) translateY(-15px) scale(0.7);
+}
+.owl .arms {
+  position: absolute;
+  top: 58px;
+  height: 41px;
+  width: 100%;
+  overflow: hidden;
+}
+.owl .arms .arm {
+  width: 40px;
+  height: 65px;
+  background-image: url("https://dash.readme.io/img/owl-login-arm.png");
+  position: absolute;
+  left: 20px;
+  top: 40px;
+  transition: 0.3s ease-out;
+}
+.owl .arms .arm.password {
+  transform: translateX(40px) translateY(-40px);
+}
+.owl .arms .arm.arm-r {
+  left: 158px;
+  transform: scaleX(-1);
+}
+.owl .arms .arm.arm-r.password {
+  transform: translateX(-40px) translateY(-40px) scaleX(-1);
+}
+.form {
+  margin: auto;
+  margin-top: -9px;
+  padding: 30px;
+  background-color: #fff;
+  width: 175px;
+}
+.form .control {
+  margin-bottom: 10px;
+  position: relative;
+}
+.form .control label {
+  position: absolute;
+  font-size: 16px;
+  top: 11px;
+  left: 9px;
+  color: rgba(0,0,0,0.3);
+}
+.form .control input {
+  padding: 9px 6px 9px 30px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+</style>
+
+<script>
+'use strict';
+$('input[type=password]').on('focus', function () {
+    $('*').addClass('password');
+}).on('focusout', function () {
+    $('*').removeClass('password');
+});
+;
+</script>
+
+<!-- Bootstrap 3.3.7 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+<script src="https://board.mysmallfactory.com/admin/js/adminlte.js"></script>
+<script src="https://board.mysmallfactory.com/admin/js/demo.js"></script>
+
+</body>
+</html>
+
+
+
