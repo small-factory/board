@@ -28,9 +28,33 @@ module.exports = function(app, passport) {
 
 
     // ADMIN SECTION =========================
+    app.get('/admin/brokerage', isAdmin, function(req, res) {
+        res.render('admin/brokerage.ejs', {
+            user : req.user
+        });
+    })
 
-   
-    //TEACHER
+    app.post('/addBrokerage', isAdmin, function(req,res) {
+        console.log('add brokerage', req.body);
+        var newBrokerage = new (api.Brokerage)(req.body);
+        newBrokerage.save(function (err, results) {
+            if (err) console.log(err);
+            console.log(results);
+            res.json(results);
+        })
+    });
+
+    app.get('/allBrokerages', function(req,res) {
+        (api.Brokerage).find({}, function(err, brokerages) {
+            if (err) console.log(err);
+            res.send(brokerages);
+        })
+    })
+
+
+
+
+
     app.get('/admin/realtors', isAdmin, function(req, res) {
         res.render('admin/createRealtor.ejs', {
             user : req.user

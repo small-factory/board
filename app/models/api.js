@@ -13,6 +13,17 @@ var realtorSchema = mongoose.Schema({
 const Realtor = mongoose.model('Realtor', realtorSchema, 'users');
 
 
+
+var brokerageSchema = mongoose.Schema({
+    name: String,
+    email: String,
+    phone: String,
+    location: String
+});
+const Brokerage = mongoose.model('Brokerage', brokerageSchema, 'brokerages');
+
+
 module.exports = {
-    Realtor
+    Realtor,
+    Brokerage
 }
