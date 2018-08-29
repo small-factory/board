@@ -51,12 +51,28 @@ module.exports = function(app, passport) {
         })
     })
 
+    app.post('/updateBrokerage/:id', isAdmin, function(req,res) {
+        console.log('update this brokerage', req.body);
+        (api.Brokerage).findByIdAndUpdate(req.params.id, req.body, function (err, resp) {
+            if (err) console.log(err);
+            console.log(resp);
+            res.json(resp);
+         })
+    })
+
+    app.delete('/deleteBrokerage/:id', function(req,res) {
+        (api.Brokerage).findByIdAndRemove(req.params.id, function (err, dist) {
+            if (err) console.log(err);
+            res.send(dist);
+        })
+    })
+
 
 
 
 
     app.get('/admin/realtors', isAdmin, function(req, res) {
-        res.render('admin/createRealtor.ejs', {
+        res.render('admin/realtor.ejs', {
             user : req.user
         });
     })
@@ -74,6 +90,22 @@ module.exports = function(app, passport) {
             if (err) console.log(err);
             console.log(results);
             res.json(results);
+        })
+    })
+
+    app.post('/updateRealtor/:id', isAdmin, function(req,res) {
+        console.log('update this Realtor', req.body);
+        (api.Realtor).findByIdAndUpdate(req.params.id, req.body, function (err, resp) {
+            if (err) console.log(err);
+            console.log(resp);
+            res.json(resp);
+         })
+    })
+
+    app.delete('/deleteRealtor/:id', function(req,res) {
+        (api.Realtor).findByIdAndRemove(req.params.id, function (err, dist) {
+            if (err) console.log(err);
+            res.send(dist);
         })
     })
 

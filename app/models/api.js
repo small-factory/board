@@ -8,7 +8,9 @@ var realtorSchema = mongoose.Schema({
         password: String
     },
     name: String,
-    phone: String
+    phone: String,
+    brokerageId: String,
+    brokerageName: String
 });
 const Realtor = mongoose.model('Realtor', realtorSchema, 'users');
 
