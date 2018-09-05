@@ -1,14 +1,33 @@
-
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Small Factory | Default</title>
+  <title>Client Communication Center</title>
+  <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/dist/css/AdminLTE.min.css">
-  <link rel="stylesheet" href="/dist/css/skins.css">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  <!-- Morris chart -->
+  <link rel="stylesheet" href="bower_components/morris.js/morris.css">
+  <!-- jvectormap -->
+  <link rel="stylesheet" href="bower_components/jvectormap/jquery-jvectormap.css">
+  <!-- Date Picker -->
+  <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css">
+  <!-- bootstrap wysihtml5 - text editor -->
+  <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -16,115 +35,69 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+  <style>
+        .assetTable td {
+            padding: 10px;
+            border-bottom: 1px dotted #cccccc;
+            border-right: 1px dotted #cccccc;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .custom-file-upload {
+          border: 1px solid #ccc;
+          display: inline-block;
+          padding: 8px 12px;
+          cursor: pointer;
+      }
+      .custom-file-upload:hover {
+        background: #cccccc;
+      }
+      </style>
+  <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-
-
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="#" class="logo">
+    <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>S</b>F</span>
+      <span class="logo-mini"><b>C</b>CC</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Small</b>Factory</span>
+      <span class="logo-lg" style="font-size:70%"><b>Client Communication</b>Center</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
       <!-- Sidebar toggle button-->
-      <i class="material-icons" id="sidebar-toggle" data-toggle="push-menu" role="button" style="color: #fff; margin:10px;font-size:30px;">arrow_back</i>
-
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <!-- Messages: style can be found in dropdown.less-->
-          <li class="dropdown messages-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="material-icons">mail_outline</i>
-              <span class="label label-success">4</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li><!-- start message -->
-                    <a href="#">
-                      <h4>
-                        One
-                        <small><i class="material-icons">access_time</i> 5 mins</small>
-                      </h4>
-                      <p>....</p>
-                    </a>
-                  </li>
-                  <!-- end message -->
-                  <li>
-                    <a href="#">
-                     
-                      <h4>
-                        Two
-                        <small><i class="material-icons">access_time</i> 2 hours</small>
-                      </h4>
-                      <p>...</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <h4>
-                        Three
-                        <small><i class="material-icons">access_time</i> Today</small>
-                      </h4>
-                      <p>...</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <h4>
-                        Four
-                        <small><i class="material-icons">access_time</i> Yesterday</small>
-                      </h4>
-                      <p>...</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <h4>
-                        Five
-                        <small><i class="material-icons">access_time</i> 2 days</small>
-                      </h4>
-                      <p>..</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="footer"><a href="#">See All Messages</a></li>
-            </ul>
-          </li>
-          <!-- Tasks: style can be found in dropdown.less -->
+
           <li class="dropdown tasks-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="material-icons">flag</i>
+              <i class="fa fa-flag-o"></i>
               <span class="label label-danger">9</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 9 tasks</li>
+              <li class="header">You have 9 alerts</li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
                   <li><!-- Task item -->
                     <a href="#">
                       <h3>
-                        Design some buttons
+                        Campaign A
                         <small class="pull-right">20%</small>
                       </h3>
                       <div class="progress xs">
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
+                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
+                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                          <span class="sr-only">20% Read</span>
                         </div>
                       </div>
                     </a>
@@ -133,12 +106,13 @@
                   <li><!-- Task item -->
                     <a href="#">
                       <h3>
-                        Create a nice theme
+                        Campaign B
                         <small class="pull-right">40%</small>
                       </h3>
                       <div class="progress xs">
-                        <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">40% Complete</span>
+                        <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar"
+                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                          <span class="sr-only">40% Read</span>
                         </div>
                       </div>
                     </a>
@@ -147,12 +121,13 @@
                   <li><!-- Task item -->
                     <a href="#">
                       <h3>
-                        Some task I need to do
+                        Campaign C
                         <small class="pull-right">60%</small>
                       </h3>
                       <div class="progress xs">
-                        <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">60% Complete</span>
+                        <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar"
+                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                          <span class="sr-only">60% Read</span>
                         </div>
                       </div>
                     </a>
@@ -161,12 +136,13 @@
                   <li><!-- Task item -->
                     <a href="#">
                       <h3>
-                        Make beautiful transitions
+                        Campaign D
                         <small class="pull-right">80%</small>
                       </h3>
                       <div class="progress xs">
-                        <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">80% Complete</span>
+                        <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar"
+                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                          <span class="sr-only">80% Read</span>
                         </div>
                       </div>
                     </a>
@@ -182,60 +158,29 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span class="hidden-xs">
-
-
-
-
-
-                Admin
-
-
-
-
-
-              </span>
+              <img src="ew.jpg" class="user-image" alt="User Image">
+              <span class="hidden-xs">Eric Whitehead</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <p style="background: #ffffff; color: #218CBF; border-radius: 50px; width:50px; height: 50px; text-align: center;
-                margin: 0 auto;font-size: 54px;line-height: 43px;">A</p>
+                <img src="ew.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Admin
-                  <small>Member since Nov. 2012</small>
+                  Eric Whitehead - CBUS Developer
+                  <small>Member since Aug. 2018</small>
                 </p>
-              </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="/profile" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="/logout" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
-          </li>
-          <!-- Control Sidebar Toggle Button -->
-          <li>
-            <a href="#" data-toggle="control-sidebar"><i class="material-icons">group_work</i></a>
           </li>
         </ul>
       </div>
@@ -248,119 +193,35 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <p style="background: #218CBF; color: #ffffff; border-radius: 50px; width:50px; height: 50px; text-align: center;
-                margin: 0 auto;font-size: 54px;line-height: 43px;">A</p>
+          <img src="ew.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>
-
-
-
-            Admin
-
-
-
-
-
-
-          </p>
-          <a href="#"><i class="material-icons" style="font-size: 12px;">thumb_up</i> Logged in</a>
+          <p>Eric Whitehead</p>
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
-
+      <!-- search form -->
+      <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search...">
+          <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      </form>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>
-        
-        
-        <li class="treeview">
-          <a href="#">
-            <i class="material-icons" style="font-size:16px; vertical-align: sub;">bar_chart</i>
-            <span>Charts</span>
-            <span class="pull-right-container">
-              <i class="material-icons" style="font-size:16px; vertical-align: sub;">chevron_left</i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">
-              <i class="material-icons text-aqua" style="font-size:16px; vertical-align: sub;" >radio_button_unchecked</i> Projects</a></li>
-            <li><a href="#">
-            <i class="material-icons text-green" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> Completed Projects</a></li>
-            <li><a href="#">
-            <i class="material-icons text-yellow" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> Categories</a></li>
-            <li><a href="#">
-            <i class="material-icons text-red" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> Students</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="material-icons" style="font-size:16px; vertical-align: sub;">laptop</i>
-            <span>Students</span>
-            <span class="pull-right-container">
-              <i class="material-icons" style="font-size:16px; vertical-align: sub;">chevron_left</i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">
-            <i class="material-icons text-aqua" style="font-size:16px; vertical-align: sub;" >radio_button_unchecked</i> View All Students</a></li>
-            <li><a href="/admin/addStudent">
-              <i class="material-icons text-green" style="font-size:16px; vertical-align: sub;" >radio_button_unchecked</i> Add A Student</a></li>
-            <li><a href="#">
-            <i class="material-icons text-yellow" style="font-size:16px; vertical-align: sub;" >radio_button_unchecked</i> Student by Points</a></li>
-            <li><a href="#">
-            <i class="material-icons text-red" style="font-size:16px; vertical-align: sub;" >radio_button_unchecked</i> Most Active Students</a></li>
-            <li><a href="#">
-            <i class="material-icons text-blue" style="font-size:16px; vertical-align: sub;" >radio_button_unchecked</i> Star Students</a></li>
-            <li><a href="#">
-            <i class="material-icons text-purple" style="font-size:16px; vertical-align: sub;" >radio_button_unchecked</i> Newest Students</a></li>
-          </ul>
-        </li>
-        
-       
-  
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="material-icons" style="font-size:16px; vertical-align: sub;">mouse</i> <span>Multilevel</span>
-            <span class="pull-right-container">
-              <i class="material-icons" style="font-size:16px; vertical-align: sub;">chevron_left</i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="material-icons text-aqua" style="font-size:16px; vertical-align: sub;" >radio_button_unchecked</i> Level One</a></li>
-            <li class="treeview">
-              <a href="#"><i class="material-icons text-aqua" style="font-size:16px; vertical-align: sub;" >radio_button_unchecked</i> Level One
-                <span class="pull-right-container">
-                  <i class="material-icons" style="font-size:16px; vertical-align: sub;">chevron_left</i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="#"><i class="material-icons" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> Level Two</a></li>
-                <li class="treeview">
-                  <a href="#"><i class="material-icons text-yellow" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> Level Two
-                    <span class="pull-right-container">
-                      <i class="material-icons" style="font-size:16px; vertical-align: sub;">chevron_left</i>
-                    </span>
-                  </a>
-                  <ul class="treeview-menu">
-                    <li><a href="#"><i class="material-icons" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> Level Three</a></li>
-                    <li><a href="#"><i class="material-icons" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> Level Three</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li><a href="#"><i class="material-icons text-red" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> Level One</a></li>
-          </ul>
-        </li>
-        <li class="header">Important Links</li>
-         <li><a href="/admin/createDistrict"><i class="material-icons text-blue" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> <span>Create a District</span></a></li>
-         <li><a href="/admin/addTeacher"><i class="material-icons text-orange" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> <span>Add a Teacher</span></a></li>
-        <li><a href="/admin/createBoard"><i class="material-icons text-red" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> <span>Create a Teacher Board</span></a></li>
-        <li><a href="#"><i class="material-icons text-red" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> <span>Important</span></a></li>
-        <li><a href="#"><i class="material-icons text-yellow" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> <span>Warning</span></a></li>
-        <li><a href="#"><i class="material-icons text-aqua" style="font-size:16px; vertical-align: sub;">radio_button_unchecked</i> <span>Information</span></a></li>
-      </ul>
+          <li class="header">NAVIGATION</li>
+          <li style="padding:6px 0;border-bottom: 1px solid #999999; font-size: 120%;" ><a href="/"><i class="fa fa-dashboard" ></i> <span>Dashboard</span></a></li>
+          
+          <li style="padding:6px 0;border-bottom: 1px solid #999999; font-size: 120%;"><a href="/template"><i class="fa fa-files-o" ></i> <span>Templates</span></a></li>
+          <li style="padding:6px 0;border-bottom: 1px solid #999999;font-size: 120%;"><a href="/users"><i class="fa fa-user"></i> <span>User/Groups</span></a></li>
+          <li style="padding:6px 0;border-bottom: 1px solid #999999;font-size: 120%;"><a href="/campaigns"><i class="fa fa-envelope"></i> <span>Campaigns</span></a></li>
+          <li style="padding:6px 0;border-bottom: 1px solid #999999;font-size: 120%;"><a href="/activity"><i class="fa fa-address-book"></i> <span>Activity Summary</span></a></li>
+          <li style="padding:6px 0;border-bottom: 1px solid #999999;font-size: 120%;" class="active"><a href="/assets"><i class="fa fa-gear"></i> <span>Assets</span></a></li>
+        </ul>
     </section>
     <!-- /.sidebar -->
   </aside>
@@ -370,399 +231,351 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        
-
-
-
-
-        Admin
-
-
-<%= user %>
-
-
-
-        Profile
+        My Profile
+        <small>Customer Communication Center</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="material-icons" style="font-size:16px; vertical-align: sub;">dashboard</i> Dashboard</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"> Profile</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-
-      <div class="row">
-        <div class="col-md-3">
-
-          <!-- Profile Image -->
-          <div class="box box-primary">
-            <div class="box-body box-profile">
-              <h3>Some title here</h3>
-              <ul class="list-group list-group-unbordered">
-                <li class="list-group-item">
-                  <b>Students</b> <a class="pull-right">1,322</a>
-                </li>
-                <li class="list-group-item">
-                  <b>Projects</b> <a class="pull-right">543</a>
-                </li>
-                <li class="list-group-item">
-                  <b>Completed Projects</b> <a class="pull-right">13,287</a>
-                </li>
-              </ul>
-
-              <a href="#" class="btn btn-primary btn-block"><b>Action</b></a>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-
-          <!-- About Me Box -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Section number two</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <strong><i class="material-icons" style="font-size:16px; vertical-align: sub;">headset</i> Title</strong>
-
-              <p class="text-muted">
-                filler text for everyone from filler text for everyone from
-              </p>
-
-              <hr>
-
-              <strong><i class="material-icons" style="font-size:16px; vertical-align: sub;">location_on</i>Location</strong>
-
-              <p class="text-muted">New Jersey</p>
-
-              <hr>
-
-              <strong><i class="material-icons" style="font-size:16px; vertical-align: sub;">accessibility</i> More</strong>
-
-              <p>
-                <span class="label label-danger">Knex</span>
-                <span class="label label-success">Coding</span>
-                <span class="label label-info">Minecraft</span>
-                <span class="label label-warning">Ozobot</span>
-                <span class="label label-primary">Makey-Makey</span>
-              </p>
-
-              <hr>
-
-              <strong><i class="material-icons" style="font-size:16px; vertical-align: sub;">note</i> Notes</strong>
-
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-9">
-          <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-              <li class="active"><a href="#completed" data-toggle="tab">Completed Projects</a></li>
-              <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
-              <li><a href="#someForm" data-toggle="tab">Some Form</a></li>
-            </ul>
-            <div class="tab-content">
-              <div class="active tab-pane" id="completed">
-                <!-- Post -->
-                <div class="post">
-                  <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">Jonathan B</a>
-                        </span>
-                    <span class="description">Project completed - 7:30 PM today</span>
+            <div class="row">
+                    <div class="col-md-3">
+            
+                      <!-- Profile Image -->
+                      <div class="box box-primary">
+                        <div class="box-body box-profile">
+                          <img class="profile-user-img img-responsive img-circle" src="ew.jpg" alt="User profile picture">
+            
+                          <h3 class="profile-username text-center">Eric Whitehead</h3>
+            
+                          <p class="text-muted text-center">Applications Developer</p>
+            
+                          <ul class="list-group list-group-unbordered">
+                            <li class="list-group-item">
+                              <b>Users</b> <a class="pull-right">1,322</a>
+                            </li>
+                            <li class="list-group-item">
+                              <b>Campaigns</b> <a class="pull-right">543</a>
+                            </li>
+                            <li class="list-group-item">
+                              <b>Notifications Sent</b> <a class="pull-right">13,287</a>
+                            </li>
+                          </ul>
+                        </div>
+                        <!-- /.box-body -->
+                      </div>
+                      <!-- /.box -->
+            
+                      <!-- About Me Box -->
+                      <div class="box box-primary">
+                        <div class="box-header with-border">
+                          <h3 class="box-title">Another Section?</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                         ...
+                        </div>
+                        <!-- /.box-body -->
+                      </div>
+                      <!-- /.box -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-md-9">
+                      <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs">
+                          <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Information</a></li>
+                          <li class=""><a href="#timeline" data-toggle="tab" aria-expanded="false">Timeline</a></li>
+                        </ul>
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="activity">
+                                <table class="main_tbl" valign="top" cellspacing="0" cellpadding="0" width="100%" border="1" align="center">
+                                        <tbody><tr>
+                                        <td valign="top" width="50%" align="left">
+                                        <table class="incl_tbl" cellspacing="0" cellpadding="0" width="100%" border="1">
+                                        <tbody><tr height="18"><td class="tl" colspan="2" align="center"><nobr>PERSONAL DATA</nobr></td></tr>
+                                        <tr height="18"><td class="nm" width="30%">Last Name</td><td class="vl">WHITEHEAD </td></tr>
+                                        <tr height="18"><td class="nm" width="30%">First Name</td><td class="vl">ERIC</td></tr>
+                                        <tr height="18">
+                                        <td class="nm">ATTUID</td><td class="vl">ew6980<input id="atta1" value="ew6980" type="hidden">
+                                        </td>
+                                        </tr>
+                                        <tr height="18"><td class="nm">Job Title</td><td class="vl"><a title="WHITEHEAD ERIC's Organizational Listing" href="/cgi-bin/orglist.pl?id=ew6980&amp;org=&amp;level=2&amp;output=html">SYSTEMS ENGINEER</a></td></tr>
+                                        <tr height="18"><td class="nm" width="30%">Consulting Company</td><td class="vl">UNIXPROS LLC.</td></tr>
+                                        <tr height="18"><td class="nm" width="30%">E-Mail Address</td><td class="vl"><a href="mailto:ew6980@us.att.com">ew6980@us.att.com</a></td></tr>
+                                        <tr height="18"><td class="nm" width="30%">E-Mail Address  Alias</td><td class="vl"><a href="mailto:<a">ericpwhitehead@att.com</a></td></tr>
+                                        <tr height="18"><td class="nm" width="30%">Primary Email Address</td><td class="vl"><a href="mailto:EW6980@att.com">EW6980@att.com</a></td></tr>
+                                        <tr height="18"><td class="nm" width="30%">Q Presence</td>
+                                        <td class="vl">
+                                        <nobr>
+                                        &nbsp;<a href="qto://talk/ew6980"><img id="q" alt="Q - Messenger for ERIC WHITEHEAD: Offline/Unavailable. Click to Chat" src="http://zlpv7599.vci.att.com/webmedia/webpresence/BulbUnlit.gif" width="16" border="0" align="absbottom"></a>
+                                        <span id="q_m">Unavailable</span>
+                                        <span id="q_c">
+                                        </span>
+                                        </nobr>
+                                        </td></tr>
+                                        <tr height="18"><td class="nm" width="30%">tSpace</td>
+                                        <td class="vl">
+                                        <nobr>
+                                        &nbsp;<a href="http://tspace.web.att.com/profiles/html/profileView.do?uid=ew6980&amp;lang=en_us" target="_blank">Learn More About ERIC</a>
+                                        </nobr>
+                                        </td></tr>
+                                        <tr height="18"><td class="nm">Phone</td><td class="vl">
+                                        &nbsp;
+                                        </td>
+                                        </tr><tr height="18"><td class="nm">Cell Phone</td><td class="vl">
+                                        &nbsp;
+                                        </td>
+                                        </tr><tr height="18"><td class="nm">Pager</td><td class="vl">
+                                        &nbsp;
+                                        </td>
+                                        </tr><tr height="18"><td class="nm" width="30%">FAX</td><td class="vl">&nbsp;</td></tr>
+                                        </tbody></table>
+                                        </td>
+                                        <td valign="top" width="50%" align="left">
+                                        <table class="incl_table" cellspacing="0" cellpadding="0" width="100%" border="1">
+                                        <tbody><tr height="18"><td class="tl" colspan="2" align="center"><nobr>LOCATION DATA</nobr></td></tr>
+                                        <tr height="18"><td class="nm" width="30%">Street</td><td class="vl">200 S LAUREL AVE - BLDG A</td></tr>
+                                        <tr height="18"><td class="nm" width="30%">Room</td><td class="vl">NA</td></tr>
+                                        <tr height="18"><td class="nm" width="30%">City</td><td class="vl">MIDDLETOWN</td></tr>
+                                        <tr height="18"><td class="nm" width="30%">State</td><td class="vl">NJ</td></tr>
+                                        <tr height="18"><td class="nm" width="30%">ZIP</td><td class="vl">07748</td></tr>
+                                        <tr height="18"><td class="nm" width="30%">Country</td><td class="vl">USA</td></tr>
+                                        <tr height="18"><td class="nm" width="30%">Geographic Location Code</td><td class="vl">&nbsp;</td></tr>
+                                        <tr height="18"><td class="nm" width="30%">Architectural Object ID</td><td class="vl">&nbsp;</td></tr>
+                                        <tr height="18"><td class="nm" width="30%">Occupancy Indicator</td><td class="vl">FTO</td></tr>
+                                        <tr height="18"><td class="nm">CLLI</td><td class="vl"><a title="" href="/cgi-bin/loc.pl?loc=MDTWNJ21">MDTWNJ21</a></td></tr>
+                                        </tbody></table>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                        <td valign="top" width="50%" align="left">
+                                        <table class="incl_tbl" cellspacing="0" cellpadding="0" width="100%" border="1">
+                                        <tbody><tr height="18"><td class="tl" colspan="2" align="center"><nobr>ADMIN DATA</nobr></td></tr>
+                                        <tr height="18"><td class="nm">Responsible Manager</td><td class="vl"><a href="/cgi-bin/webphones.pl?id=sl3561">SHEREE J LAN</a></td></tr>
+                                        <tr height="18"><td class="nm" width="30%">Supervisor ATTUID</td><td class="vl">sl3561</td></tr>
+                                        <tr height="18"><td class="tl" colspan="2" align="center"><nobr>OTHER USER IDs</nobr></td></tr>
+                                        <tr height="18"><td class="nm" width="30%">AT&amp;T HRID</td><td class="vl">8540358</td></tr>
+                                        <tr height="18"><td class="nm" width="30%">BellSouth UID</td><td class="vl">H22WN83</td></tr>
+                                        <tr height="18"><td class="nm" width="30%">Cingular CUID</td><td class="vl">ew6980</td></tr>
+                                        <tr height="18"><td class="nm" width="30%">Payroll ID</td><td class="vl">&nbsp;</td></tr>
+                                        </tbody></table>
+                                        </td>
+                                        <td valign="top" width="50%" align="left">
+                                        <table class="incl_table" cellspacing="0" cellpadding="0" width="100%" border="1">
+                                        <tbody><tr height="18"><td class="tl" colspan="2" align="center"><nobr>CORPORATE DATA</nobr></td></tr>
+                                        <tr height="18"><td class="nm" width="30%">Business Unit</td><td class="vl">&nbsp;</td></tr>
+                                        <tr height="18"><td class="nm" width="30%">Business Unit ID</td><td class="vl">&nbsp;</td></tr>
+                                        <tr height="18"><td class="nm" width="30%">Department</td><td class="vl">AUTOMATION PLATFORMS DEVELOPMENT</td></tr>
+                                        <tr height="18"><td class="nm" width="30%">Department ID</td><td class="vl">&nbsp;</td></tr>
+                                        <tr height="18"><td class="nm" width="30%">Silo Status</td><td class="vl">NO</td></tr>
+                                        <tr height="18"><td class="nm" width="30%">Cost Center</td><td class="vl">EY18D6100</td></tr>
+                                        <tr height="18"><td class="nm" width="30%">Sponsor Company</td><td class="vl">AT&amp;T Services, Inc.</td></tr>
+                                        <tr height="18"><td class="nm" width="30%">Financial Loc Code</td><td class="vl">NJC240</td></tr>
+                                        <tr height="18"><td class="nm" width="30%">HR Building Loc</td><td class="vl">MDTWNJ21</td></tr>
+                                        </tbody></table>
+                                        </td>
+                                        </tr>
+                                        </tbody></table>
+                          </div>
+                          <!-- /.tab-pane -->
+                          <div class="tab-pane" id="timeline">
+                            <!-- The timeline -->
+                            <ul class="timeline timeline-inverse">
+                              <!-- timeline time label -->
+                              <li class="time-label">
+                                    <span class="bg-red">
+                                      10 Feb. 2014
+                                    </span>
+                              </li>
+                              <!-- /.timeline-label -->
+                              <!-- timeline item -->
+                              <li>
+                                <i class="fa fa-envelope bg-blue"></i>
+            
+                                <div class="timeline-item">
+                                  <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+            
+                                  <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+            
+                                  <div class="timeline-body">
+                                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
+                                    weebly ning heekya handango imeem plugg dopplr jibjab, movity
+                                    jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
+                                    quora plaxo ideeli hulu weebly balihoo...
+                                  </div>
+                                  <div class="timeline-footer">
+                                    <a class="btn btn-primary btn-xs">Read more</a>
+                                    <a class="btn btn-danger btn-xs">Delete</a>
+                                  </div>
+                                </div>
+                              </li>
+                              <!-- END timeline item -->
+                              <!-- timeline item -->
+                              <li>
+                                <i class="fa fa-user bg-aqua"></i>
+            
+                                <div class="timeline-item">
+                                  <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
+            
+                                  <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request
+                                  </h3>
+                                </div>
+                              </li>
+                              <!-- END timeline item -->
+                              <!-- timeline item -->
+                              <li>
+                                <i class="fa fa-comments bg-yellow"></i>
+            
+                                <div class="timeline-item">
+                                  <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
+            
+                                  <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
+            
+                                  <div class="timeline-body">
+                                    Take me to your leader!
+                                    Switzerland is small and neutral!
+                                    We are more like Germany, ambitious and misunderstood!
+                                  </div>
+                                  <div class="timeline-footer">
+                                    <a class="btn btn-warning btn-flat btn-xs">View comment</a>
+                                  </div>
+                                </div>
+                              </li>
+                              <!-- END timeline item -->
+                              <!-- timeline time label -->
+                              <li class="time-label">
+                                    <span class="bg-green">
+                                      3 Jan. 2014
+                                    </span>
+                              </li>
+                              <!-- /.timeline-label -->
+                              <!-- timeline item -->
+                              <li>
+                                <i class="fa fa-camera bg-purple"></i>
+            
+                                <div class="timeline-item">
+                                  <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
+            
+                                  <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
+            
+                                  <div class="timeline-body">
+                                    <img src="http://placehold.it/150x100" alt="..." class="margin">
+                                    <img src="http://placehold.it/150x100" alt="..." class="margin">
+                                    <img src="http://placehold.it/150x100" alt="..." class="margin">
+                                    <img src="http://placehold.it/150x100" alt="..." class="margin">
+                                  </div>
+                                </div>
+                              </li>
+                              <!-- END timeline item -->
+                              <li>
+                                <i class="fa fa-clock-o bg-gray"></i>
+                              </li>
+                            </ul>
+                          </div>
+                          <!-- /.tab-pane -->
+            
+                          <div class="tab-pane" id="settings">
+                            <form class="form-horizontal">
+                              <div class="form-group">
+                                <label for="inputName" class="col-sm-2 control-label">Name</label>
+            
+                                <div class="col-sm-10">
+                                  <input class="form-control" id="inputName" placeholder="Name" type="email">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+            
+                                <div class="col-sm-10">
+                                  <input class="form-control" id="inputEmail" placeholder="Email" type="email">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="inputName" class="col-sm-2 control-label">Name</label>
+            
+                                <div class="col-sm-10">
+                                  <input class="form-control" id="inputName" placeholder="Name" type="text">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
+            
+                                <div class="col-sm-10">
+                                  <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
+            
+                                <div class="col-sm-10">
+                                  <input class="form-control" id="inputSkills" placeholder="Skills" type="text">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                  <div class="checkbox">
+                                    <label>
+                                      <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
+                                    </label>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                  <button type="submit" class="btn btn-danger">Submit</button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                          <!-- /.tab-pane -->
+                        </div>
+                        <!-- /.tab-content -->
+                      </div>
+                      <!-- /.nav-tabs-custom -->
+                    </div>
+                    <!-- /.col -->
                   </div>
-                  <!-- /.user-block -->
-                  <p>
-                    Lorem ipsum represents a long-held tradition for designers,
-                    typographers and the like. Some people hate it and argue for
-                    its demise, but others ignore the hate as they create awesome
-                    tools to help create filler text for everyone from bacon lovers
-                    to Charlie Sheen fans.
-                  </p>
-
-                 <form class="form-horizontal">
-                    <div class="form-group margin-bottom-none">
-                      <div class="col-sm-9">
-                        <input class="form-control input-sm" placeholder="Response">
-                      </div>
-                      <div class="col-sm-3">
-                        <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-                <!-- /.post -->
-
-                <!-- Post -->
-                <div class="post clearfix">
-                  <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="img/user7-128x128.jpg" alt="User Image">
-                        <span class="username">
-                          <a href="#">Sarah R</a>
-                        </span>
-                    <span class="description">Sent you a message - 3 days ago</span>
-                  </div>
-                  <!-- /.user-block -->
-                  <p>
-                    Lorem ipsum represents a long-held tradition for designers,
-                    typographers and the like. Some people hate it and argue for
-                    its demise, but others ignore the hate as they create awesome
-                    tools to help create filler text for everyone from bacon lovers
-                    to Charlie Sheen fans.
-                  </p>
-
-                  <form class="form-horizontal">
-                    <div class="form-group margin-bottom-none">
-                      <div class="col-sm-9">
-                        <input class="form-control input-sm" placeholder="Response">
-                      </div>
-                      <div class="col-sm-3">
-                        <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-                <!-- /.post -->
-
-                <!-- Post -->
-                <div class="post">
-                  <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="img/user6-128x128.jpg" alt="User Image">
-                        <span class="username">
-                          <a href="#">Adam Jones</a>
-                        </span>
-                   <span class="description">Project completed - 7:30 PM today</span>
-                  </div>
-                  <!-- /.user-block -->
-                  <p>
-                    Lorem ipsum represents a long-held tradition for designers,
-                    typographers and the like. Some people hate it and argue for
-                    its demise, but others ignore the hate as they create awesome
-                    tools to help create filler text for everyone from bacon lovers
-                    to Charlie Sheen fans.
-                  </p>
-
-                 <form class="form-horizontal">
-                    <div class="form-group margin-bottom-none">
-                      <div class="col-sm-9">
-                        <input class="form-control input-sm" placeholder="Response">
-                      </div>
-                      <div class="col-sm-3">
-                        <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-                <!-- /.post -->
-              </div>
-              <!-- /.tab-pane -->
-              <div class="tab-pane" id="timeline">
-                <!-- The timeline -->
-                <ul class="timeline timeline-inverse">
-                  <!-- timeline time label -->
-                  <li class="time-label">
-                        <span class="bg-red">
-                          10 Feb. 2014
-                        </span>
-                  </li>
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
-                  <li>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="material-icons text-red" style="font-size:16px; vertical-align: sub;">access_time</i> 12:05</span>
-
-                      <h3 class="timeline-header"><a href="#">Student A</a> completed a project</h3>
-
-                      <div class="timeline-body">
-                        Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                        weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                        jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                        quora plaxo ideeli hulu weebly balihoo...
-                      </div>
-                      <div class="timeline-footer">
-                        <a class="btn btn-primary btn-xs">Read more</a>
-                        <a class="btn btn-danger btn-xs">Delete</a>
-                      </div>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <!-- timeline item -->
-                  <li>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="material-icons text-red" style="font-size:16px; vertical-align: sub;">access_time</i> 5 mins ago</span>
-
-                      <h3 class="timeline-header no-border"><a href="#">Sarah Y</a> did something
-                      </h3>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <!-- timeline item -->
-                  <li>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="material-icons text-red" style="font-size:16px; vertical-align: sub;">access_time</i> 27 mins ago</span>
-
-                      <h3 class="timeline-header"><a href="#">Jay Wh</a> commented on your post</h3>
-
-                      <div class="timeline-body">
-                        Take me to your leader!
-                        Switzerland is small and neutral!
-                        We are more like Germany, ambitious and misunderstood!
-                      </div>
-                      <div class="timeline-footer">
-                        <a class="btn btn-warning btn-flat btn-xs">View comment</a>
-                      </div>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <!-- timeline time label -->
-                  <li class="time-label">
-                        <span class="bg-green">
-                          3 Jan. 2014
-                        </span>
-                  </li>
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
-                  <li>
-                    <div class="timeline-item">
-                      <span class="time"><i class="material-icons text-red" style="font-size:16px; vertical-align: sub;">access_time</i> 2 days ago</span>
-
-                      <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-
-                      <div class="timeline-body">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                      </div>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                </ul>
-              </div>
-              <!-- /.tab-pane -->
-
-              <div class="tab-pane" id="someForm">
-                <form class="form-horizontal">
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
-
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputName" placeholder="Name">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputName" placeholder="Name">
-                    </div>
-                  </div>
-                  
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <div class="checkbox">
-                        
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger">Submit</button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-              <!-- /.tab-pane -->
-            </div>
-            <!-- /.tab-content -->
-          </div>
-          <!-- /.nav-tabs-custom -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-
     </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.0
-    </div>
-    <strong>Copyright &copy; Small Factory
-  </footer>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li><a href="#control-sidebar-home-tab" data-toggle="tab">Home</a></li>
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab">Gears</a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">One</h3>
-        
-        <!-- /.control-sidebar-menu -->
-
-      </div>
-      <!-- /.tab-pane -->
-      <!-- Stats tab content -->
-      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-      <!-- /.tab-pane -->
-      <!-- Settings tab content -->
-      <div class="tab-pane" id="control-sidebar-settings-tab">
-        <div>three</div>
-      </div>
-      <!-- /.tab-pane -->
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
 </div>
+
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- FastClick -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
-<script src="https://board.mysmallfactory.com/js/adminlte.js"></script>
-<script src="https://board.mysmallfactory.com/js/demo.js"></script>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-  $('#sidebar-toggle').click(function() {
-    var text = $(this).text();
-    console.log(text)
-    if ($(this).text() === 'arrow_back') {
-      $(this).text('arrow_forward')
-    } else  if ($(this).text() === 'arrow_forward') {
-      $(this).text('arrow_back')
-    }
-  })
+  $.widget.bridge('uibutton', $.ui.button);
 </script>
+<!-- Bootstrap 3.3.7 -->
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<!-- Sparkline -->
+<script src="bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+<!-- Slimscroll -->
+<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="dist/js/pages/dashboard.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+
+<script>
+        $(function () {
+            
+         });
+ </script>
 </body>
 </html>
-
-

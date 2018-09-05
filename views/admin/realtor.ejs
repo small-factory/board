@@ -69,8 +69,8 @@
     <button type="button" class="btn btn-default hid2" data-toggle="modal" data-target="#modal-default" style="display:none;">
         modal
       </button>
-    <%- include ../partials/header.ejs %>
-    <%- include ../partials/sidebar.ejs %>
+    <%- include ./partials/header.ejs %>
+    <%- include ./partials/sidebar.ejs %>
 
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -168,7 +168,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-    <%- include ../partials/footer.ejs %>
+    <%- include ./partials/footer.ejs %>
 
     <div class="modal fade" id="modal-default">
         <div class="modal-dialog">
@@ -271,10 +271,10 @@
         realtorData.forEach(function(realtor) {
           $('#example1 tbody').append(`
                   <tr id='${realtor._id}' class="realtorRow">
-                      <td class="name">${realtor.name}</td>
+                      <td class="name">${realtor.local.name}</td>
                       <td class="email">${realtor.local.email}</td>
-                      <td class="phone">${realtor.phone}</td>
-                      <td class="brokerage">${realtor.brokerageName}</td>
+                      <td class="phone">${realtor.local.phone}</td>
+                      <td class="brokerage">${realtor.local.brokerageName}</td>
                       `);
       })
 
@@ -311,12 +311,13 @@
                 group: 3,
                 local: {
                     email,
-                    password
-                },
-                name,
-                phone,
-                brokerageId,
-                brokerageName
+                    password,
+                    name,
+                    phone,
+                    brokerageId,
+                    brokerageName
+                }
+                
             },
             success: function(res) {
                 console.log('respnse', res);

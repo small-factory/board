@@ -5,12 +5,13 @@ var realtorSchema = mongoose.Schema({
     group: Number,
     local: {
         email: String,
-        password: String
-    },
-    name: String,
-    phone: String,
-    brokerageId: String,
-    brokerageName: String
+        password: String,
+        name: String,
+        phone: String,
+        brokerageId: String,
+        brokerageName: String
+    }
+    
 });
 const Realtor = mongoose.model('Realtor', realtorSchema, 'users');
 
@@ -24,8 +25,30 @@ var brokerageSchema = mongoose.Schema({
 });
 const Brokerage = mongoose.model('Brokerage', brokerageSchema, 'brokerages');
 
+var prospectSchema = mongoose.Schema({
+    firstName: String,
+    lastName: String,
+    email: String,
+    phone: String,
+    notes: String,
+    companyName: String,
+    realtorId: String,
+    realtorName: String
+}, { timestamps: true });
+const Prospect = mongoose.model('Prospect', prospectSchema, 'prospects');
+
+var groupSchema = mongoose.Schema({
+    name: String,
+    prospects: [],
+    owner: String
+    
+}, { timestamps: true });
+const Group = mongoose.model('Group', groupSchema, 'groups');
+
 
 module.exports = {
     Realtor,
-    Brokerage
+    Brokerage,
+    Prospect,
+    Group
 }

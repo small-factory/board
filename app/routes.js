@@ -1,3 +1,7 @@
+
+const path = require('path');
+const csvtojsonV2=require("csvtojson/v2");
+var mv = require('mv');
 const api = require('./models/api');
 
 module.exports = function(app, passport) {
@@ -15,7 +19,7 @@ module.exports = function(app, passport) {
                 user : req.user
             });
         } else if (req.user.group === 3) {
-            res.render('teacher.ejs', {
+            res.render('realtor.ejs', {
                 user : req.user
             });
         } else {
@@ -108,6 +112,100 @@ module.exports = function(app, passport) {
             res.send(dist);
         })
     })
+
+
+    app.get('/users', isLoggedIn, function(req, res) {
+        res.render('users.ejs', {
+            user : req.user
+        });
+    });
+
+    app.get('/myProspects', isLoggedIn, function(req,res) {
+        //(api.Prospect).find({realtorId: req.user._id}, function(err, prospects) {
+        (api.Prospect).find({}, function(err, prospects) {
+            if (err) console.log(err);
+            res.send(prospects);
+        })
+    })
+
+    app.post('/addProspect', isLoggedIn, function(req, res) {
+        console.log(req.body);
+        var newProspect = new (api.Prospect)(req.body);
+        newProspect.save(function (err, results) {
+            if (err) console.log(err);
+            console.log(results);
+            res.json(results);
+        })
+    })
+    app.get('/myGroups', (req,res) => {
+        (api.Group).find({}, function(err, resp) {
+            if (err) console.log(err)
+            console.log('groups', resp)
+            res.json(resp);
+        })
+    })
+    app.post('/addGroup', (req, res) => {
+        console.log(req.body);
+        req.body.owner = req.user._id
+        var newGroup = new (api.Group)(req.body);
+        newGroup.save(function(error, result) { 
+            if (error) {
+              console.log('err', error)
+            }
+            res.json({message: 'successful!'})
+            console.log(result);
+           });
+        console.log('got it', req.body)
+    })
+
+    app.get('/campaigns', isLoggedIn, function(req, res) {
+        res.render('campaigns.ejs', {
+            user : req.user
+        });
+    });
+
+    app.get('/activity', isLoggedIn, function(req, res) {
+        res.render('activity.ejs', {
+            user : req.user
+        });
+    });
+
+    app.get('/assets', isLoggedIn, function(req, res) {
+        res.render('assets.ejs', {
+            user : req.user
+        });
+    });
+
+
+    // CSV UPLOAD
+
+    
+  app.post('/uploadCsv', function(req, res) {
+    if (!req.files)
+      return res.status(400).send('No files were uploaded.');
+      
+    let sampleFile = req.files.sampleFile;
+    const stringVersion = (sampleFile.data).toString('utf8');
+    console.log(stringVersion)
+      csvtojsonV2()
+      .fromString(stringVersion)
+      .then((jsonObj)=>{
+          console.log('csv to json result: ',jsonObj);
+          var newProspect = new (api.Prospect)(jsonObj);
+          newProspect.save(function (err, results) {
+              if (err) console.log(err);
+              console.log(results);
+              res.json(results);
+          })
+      })
+      .catch((err)=> {
+          console.log('err', err);
+          reject('err', err);
+      })
+        
+      
+  });
+
 
     // LOGOUT ==============================
     app.get('/logout', function(req, res) {

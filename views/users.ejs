@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>bare | realtor</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+   <!-- Select2 -->
+   <link rel="stylesheet" href="bower_components/select2/dist/css/select2.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  <!-- Morris chart -->
+  <link rel="stylesheet" href="bower_components/morris.js/morris.css">
+  <!-- jvectormap -->
+  <link rel="stylesheet" href="bower_components/jvectormap/jquery-jvectormap.css">
+  <!-- Date Picker -->
+  <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css">
+  <!-- bootstrap wysihtml5 - text editor -->
+  <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  
+  <style>
+    .example-modal .modal {
+      position: relative;
+      top: auto;
+      bottom: auto;
+      right: auto;
+      left: auto;
+      display: block;
+      z-index: 1;
+      width: 90%;
+    }
+
+    .example-modal .modal {
+      background: transparent !important;
+    }
+    .modal-dialog {
+        width: 80%;
+    }
+    input[type="file"] {
+        display: none;
+    }
+    .custom-file-upload {
+      border: 1px solid #ccc;
+      display: inline-block;
+      padding: 8px 12px;
+      cursor: pointer;
+  }
+  .custom-file-upload:hover {
+    background: #cccccc;
+  }
+  </style>
+
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+        <%- include partials/header.ejs %>
+        <%- include partials/sidebar.ejs %>
+
+<!-- ./wrapper -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Prospects
+      <small>bare realtor app</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li class="active" > <i class="fa fa-user"></i> Prospects</li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+          <div class="col-lg-12 col-xs-12">
+                  <!-- small box -->
+                  <div class="box">
+                        <div class="box-header">
+                          <h3 class="box-title">My Groups</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                              <table id="example3" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example2_info">
+                                      <thead>
+                                      <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" style="width: 182.467px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                          Group Name</th><th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" style="width: 225.017px;" aria-label="Browser: activate to sort column ascending">
+                                              Prospects</th></tr>
+                                      </thead>
+                                      <tbody>
+                                      
+                                              </tbody>
+                                      
+                                    </table>
+                          </div>
+                          <div class="box-footer">
+                                  <button type="button" class="btn btn-info btn-success btn-lg addGroup" data-target="#add-group" data-toggle="modal">Add New Group</button>
+
+                                
+                                  
+                                    <div class="modal fade" id="add-group">
+                                          <div class="modal-dialog">
+                                            <div class="modal-content">
+                                              <div class="modal-header" style="background:#eeeeee; border-bottom:1px solid #cccccc;">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true" style="font-size:150%">&times;</span></button>
+                                                <h3 class="modal-title">Add a new group</h3>
+                                              </div>
+                                              <div class="modal-body">
+                                                <p>
+                                      <div class="row">       
+                      <div class="form-group col-md-12">
+                              <label for="groupName">Group Name</label>
+                              <input class="form-control" id="groupName" placeholder="Enter Group Name" type="text">
+                              </div>
+                      
+                          </div> 
+                          <div class="row">       
+                                  <div class="form-group col-md-12">
+                                          <label for="users">Prospects</label>
+                                          <select class="form-control select2 usersInGroup" multiple="multiple" data-placeholder="Select prospects"
+                                              style="width: 100%;">
+                                        
+                                      </select>
+                                          
+                                          </div>
+                                      
+                                      </div>  
+                                                </p>
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary saveGroup">Save changes</button>
+                                              </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                          </div>
+                                          <!-- /.modal-dialog -->
+                                        </div>
+                                        <!-- /.modal -->
+                          </div>
+                  </div>
+          </div>
+                            
+        </div>
+<div class="row">
+          <div class="col-lg-12 col-xs-12">
+                  <!-- small box -->
+                  <div class="box">
+                        <div class="box-header">
+                          <h3 class="box-title">My Prospects</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                              <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                      <thead>
+                                      <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 182.467px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                          First Name</th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 225.017px;" aria-label="Browser: activate to sort column ascending">
+                                              Last Name</th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 198.733px;" aria-label="Platform(s): activate to sort column ascending">
+                                                  Email</th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 110.883px;" aria-label="CSS grade: activate to sort column ascending">
+                                                          Company Name</th></tr>
+                                      </thead>
+                                      <tbody>
+                                      
+                                              </tbody>
+                                      
+                                    </table>
+                          </div>
+                          <div class="box-footer">
+                                  <button type="button" class="btn btn-info btn-warning btn-lg addTemplate" data-target="#add-new" data-toggle="modal">Add New Prospect</button>
+
+                                  <button type="button" class="btn btn-danger btn-lg bulkImport" data-target="#bulk" data-toggle="modal">Bulk import</button>
+
+                                  <div class="modal fade" id="bulk">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                          <div class="modal-header" style="background:#eeeeee; border-bottom:1px solid #cccccc;">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true" style="font-size:150%">&times;</span></button>
+                                            <h3 class="modal-title">Bulk Import Prospects</h3>
+                                          </div>
+                                          <div class="modal-body">
+                                            <p>
+                              <h3>Please download and fill out <a href="users.csv">
+                                this file
+                              </a>.</h3><br/>
+                                                <form ref='uploadForm' 
+                      style="width:auto;display:inline-block; margin-left:2%;vertical-align: top"
+                      id='uploadForm' 
+                      action='/uploadCsv' 
+                      method='post' 
+                      encType="multipart/form-data">
+                      <label for="sampleFile" class="custom-file-upload" class="btn btn-default">
+                        <i class="fa fa-cloud-upload"></i> Select File
+                      </label>
+                        <input type="file" name="sampleFile" id="sampleFile" />
+                        <button type='submit'class="btn btn-primary uploadButton" style="margin-top: -3px; height: 38px;" disabled="true">Upload</button>
+                    </form>   
+                    <div class="fileInfo" style="display:inline-block"></div> 
+                                            </p>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                                            
+                                          </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                      </div>
+                                      <!-- /.modal-dialog -->
+                                    </div>
+                                  
+                                    <div class="modal fade" id="add-new">
+                                          <div class="modal-dialog">
+                                            <div class="modal-content">
+                                              <div class="modal-header" style="background:#eeeeee; border-bottom:1px solid #cccccc;">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true" style="font-size:150%">&times;</span></button>
+                                                <h3 class="modal-title">Add a new prospect</h3>
+                                              </div>
+                                              <div class="modal-body">
+                                                <p>
+                                                    <input id="realtorId" type="hidden" value="<%- user._id %>">
+                                                    <input id="realtorName" type="hidden" value="<%- user.local.name %>">
+                                      <div class="row">       
+                      <div class="form-group col-md-6">
+                              <label for="firstName">First Name</label>
+                              <input class="form-control" id="firstName" placeholder="Enter First Name" type="text">
+                              </div>
+                      <div class="form-group col-md-6">
+                              <label for="lastName">Last Name</label>
+                              <input class="form-control" id="lastName" placeholder="Enter Last Name" type="text">
+                              </div>
+                          </div> 
+                          <div class="row">       
+                                  <div class="form-group col-md-6">
+                                          <label for="phone">Phone Number</label>
+                                          <input class="form-control" id="phone" placeholder="Enter Phone Number" type="text">
+                                          </div>
+                                          <div class="form-group col-md-6">
+                                            <label for="companyName">Company Name</label>
+                                            <input class="form-control" id="companyName" placeholder="Enter First Name" type="text">
+                                            </div>
+                                      </div> 
+                                      <div class="row">       
+                                              
+                                                      <div class="form-group col-md-6">
+                                                              <label for="email">Email</label>
+                                                              <input class="form-control" id="email" placeholder="Enter Email" type="text">
+                                                              </div>
+
+                                                              <div class="form-group col-md-6">
+                                                                <label for="notes">Notes</label>
+                                                                <input class="form-control" id="notes" placeholder="Enter notes" type="text">
+                                                                </div>
+                                              
+                                                  </div> 
+                                                            
+                                                      
+                                                </p>
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary addUser">Save changes</button>
+                                              </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                          </div>
+                                          <!-- /.modal-dialog -->
+                                        </div>
+
+                                        
+                                        <!-- /.modal -->
+                          </div>
+                  </div>
+          </div>
+                            
+        </div>
+
+  </section>
+  <!-- /.content -->
+</div>
+<div class="modal fade" id="editGroup">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background:#eeeeee; border-bottom:1px solid #cccccc;">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" style="font-size:150%">&times;</span></button>
+          <h3 class="modal-title">Edit Group</h3>
+        </div>
+        <div class="modal-body">
+          <p>
+<div class="row">       
+<div class="form-group col-md-6">
+<label for="name">name</label>
+<input class="form-control" id="name" placeholder="Enter First Name" type="text">
+</div>
+
+<div class="form-group col-md-6">
+    <label for="name">name</label>
+    <div class="existingUsers"></div>
+    </div>
+
+</div> 
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary updateUser">Save changes</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+
+  <button type="button" class="btn btn-info btn-success btn-lg editGroup" data-target="#editGroup" data-toggle="modal" style="display:none;"> </button>
+
+<!-- jQuery 3 -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<!-- Bootstrap 3.3.7 -->
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<!-- Sparkline -->
+<script src="bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+<!-- Slimscroll -->
+<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<!-- Select2 -->
+<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+
+<script>
+  if(location.pathname !== "/users") {
+    window.location.pathname = '/users';
+  }
+  //Initialize Select2 Elements
+  $('.select2').select2()
+$.getJSON("/myProspects", (data) =>{
+                    data.forEach((user) => {
+                        $('#example1 tbody').append(`<tr role="row">
+                                            <td class="sorting_1 name">${user.firstName}</td>
+                                            <td class="type">${user.lastName}</td>
+                                            <td class="subject">${user.email}</td>
+                                            <td class="updated">${user.companyName}</td>                    
+                                            </tr>
+                        `)
+                        $('.select2.usersInGroup').append(`
+                              <option value="${user._id}">${user.firstName} ${user.lastName}</option>
+                          `)
+                    })
+
+                    $('#example1').DataTable();
+                    
+                    $('#example1 tbody tr').click(function() {
+                        var name = $(this).children('td.name').text();
+                        
+                        $('.editTemplate').click();
+                    // $('#template').val();
+                    })
+
+                    $.getJSON("/myGroups", (groups) => {
+                        groups.forEach((group) => {
+                          let theseUsers = [];
+                        (group.prospects).forEach((userInThisGroup) => {
+                          let obj = data.find(o => o._id === userInThisGroup);
+                          let userName = '<small class="label bg-green">'+obj.firstName+' '+obj.lastName+'</small>';
+                          theseUsers.push(userName);
+                        })
+                          $('#example3 tbody').append(`<tr role="row">
+                              <td class="sorting_1 name">${group.name}</td>
+                              <td class="users">${theseUsers}</td>
+                              </tr>
+                            `)
+                            $('select.groupsSelect ').append(`
+                              <option value="${group._id}">${group.name}</option>`)
+                        })
+                        $('.select2.groupsSelect').select2();
+
+                        $('#example3 tbody tr').click(function() {
+                          var name = $(this).children('td.name').text();
+                          var users = $(this).children('td.users').text();
+                          var prospects = users.split(',');
+                          console.log(name,users);
+                          $('button.editGroup').click();
+                          $('#editGroup div.existingUsers').html(`<select class="form-control existingUsers" multiple="multiple" data-placeholder="Prospects" style="width: 100%;"></select>`);
+                          prospects.forEach((user) => {
+                            $('select.existingUsers').append(`
+                              <option value="${user}" selected>${user}</option>`)
+                            })
+                          
+                          $('#editGroup input#name').val(name);
+                          $('select.existingUsers').select2();
+                        })
+                      })
+
+                $('.saveGroup').click(function() {
+                  var name = $('input#groupName').val();
+                  var prospects = $('select.usersInGroup ').val();
+                  $.ajax({
+                        url: '/addGroup',
+                        type: 'POST',
+                        data: {name, prospects},
+                        success: function() {
+                            console.log('success')
+                            $('button.close').click();
+                            location.reload();
+                        }
+                    })
+                })
+                 $('.addUser').click(function() {
+                    var firstName = $('input#firstName').val();
+                    var lastName = $('input#lastName').val();
+                    var email = $('input#email').val();
+                    var phone = $('input#phone').val();
+                    var notes = $('input#notes').val();
+                    var companyName = $('#companyName').val();
+                    var realtorId = $('#realtorId').val();
+                    var realtorName = $('#realtorName').val();
+                    $.ajax({
+                        url: '/addProspect',
+                        type: 'POST',
+                        data: {firstName, lastName, email, phone, notes, companyName, realtorId, realtorName},
+                        success: function() {
+                            console.log('success')
+                            $('button.close').click();
+                            location.reload();
+                        }
+                    })
+                })
+                $('.addGroup').click(function() {
+                  $('.select2.usersInGroup').select2();
+                })
+                
+
+                $('input[type="file"]').change(function() {
+                  var fileName = $(this).val();
+                  var info = $('input[type="file"]').prop('files')[0]
+                  $('.fileInfo').html(`
+                    <strong>Filename: </strong> ${info.name}<br/>
+                    <strong>Size: </strong> ${info.size}<br/>
+                    <strong>Type: </strong> ${info.type}<br/>
+                  `)
+                  $(".custom-file-upload").text(fileName);
+                  $('.uploadButton').removeAttr('disabled')
+                })
+              });
+</script>
+</body>
+</html>

@@ -72,23 +72,22 @@
         </div>
         <div class="box box-default">
           
-          <div class="box-body" style="background: url('bg.jpg'); background-repeat: no-repeat;
-          background-size: cover;background-position: center center;;min-height:350px;">
-            
-
-            <h1 style="-webkit-animation: fadeIn 1s; color:#ffffff; text-shadow: 1px 1px 2px #000000;">Bare Realtor App</h1>
-     <p>
          
-     </p>
-    <br/>
     <p>
-        <a href="/login"><button class="btn btn-block btn-primary btn-lg"> Login</button></a></p>
-        
-
-
+        <form action="/login" method="post" style="padding: 20px;">
+          <div class="form-group">
+              <label>Email</label>
+              <input type="text" class="form-control" name="email">
           </div>
-          <!-- /.box-body -->
-        </div>
+          <div class="form-group">
+              <label>Password</label>
+              <input type="password" class="form-control" name="password">
+          </div>
+  
+          <button type="submit" class="btn btn-info btn-lg">Login</button>
+      </form>
+        <!-- <a href="/login"><button class="btn btn-block btn-primary btn-lg"> Login</button></a></p> -->
+    </p>
         <!-- /.box -->
       </section>
       <!-- /.content -->
