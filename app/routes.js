@@ -157,6 +157,27 @@ module.exports = function(app, passport) {
            });
         console.log('got it', req.body)
     })
+    app.post('/updateGroup/:id', (req, res) => {
+        (api.Group).findByIdAndUpdate(req.params.id,{$set:{name:req.body.name, prospects: req.body.prospects}},{new:true}, function(err, results) {
+            if (err) {
+                console.log('error', err)
+                res.status(400).json({err})
+            } else {
+                res.json(results);
+            }
+
+        })       
+    })
+    app.delete('/deleteGroup', (req,res) => {
+        console.log(req.body);
+        (api.Group).findByIdAndRemove({_id: req.body.id}, req.body, function(err,data) {
+            if(!err){
+                console.log("Deleted", data);
+            } else {
+                console.log('error', err)
+            }
+        });
+    })
 
     app.get('/campaigns', isLoggedIn, function(req, res) {
         res.render('campaigns.ejs', {

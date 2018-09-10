@@ -306,9 +306,10 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header" style="background:#eeeeee; border-bottom:1px solid #cccccc;">
+            
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true" style="font-size:150%">&times;</span></button>
-          <h3 class="modal-title">Edit Group</h3>
+          <h3 class="modal-title modifyGroup">Edit Group</h3>
         </div>
         <div class="modal-body">
           <p>
@@ -324,11 +325,12 @@
     </div>
 
 </div> 
+<button class="button deleteGroup"><i class="fa fa-trash"></i> delete group</button>
           </p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary updateUser">Save changes</button>
+          <button type="button" class="btn btn-primary updateGroup">Save changes</button>
         </div>
       </div>
       <!-- /.modal-content -->
@@ -402,7 +404,7 @@ $.getJSON("/myProspects", (data) =>{
                           let userName = '<small class="label bg-green">'+obj.firstName+' '+obj.lastName+'</small>';
                           theseUsers.push(userName);
                         })
-                          $('#example3 tbody').append(`<tr role="row">
+                          $('#example3 tbody').append(`<tr role="row" id="${group._id}">
                               <td class="sorting_1 name">${group.name}</td>
                               <td class="users">${theseUsers}</td>
                               </tr>
@@ -412,11 +414,13 @@ $.getJSON("/myProspects", (data) =>{
                         })
                         $('.select2.groupsSelect').select2();
 
+                        
+
                         $('#example3 tbody tr').click(function() {
                           var name = $(this).children('td.name').text();
                           var users = $(this).children('td.users').text();
+                          var id = $(this).attr('id');
                           var prospects = users.split(',');
-                          console.log(name,users);
                           $('button.editGroup').click();
                           $('#editGroup div.existingUsers').html(`<select class="form-control existingUsers" multiple="multiple" data-placeholder="Prospects" style="width: 100%;"></select>`);
                           prospects.forEach((user) => {
@@ -426,6 +430,32 @@ $.getJSON("/myProspects", (data) =>{
                           
                           $('#editGroup input#name').val(name);
                           $('select.existingUsers').select2();
+                          $('.updateGroup').click(function() {
+                            console.log('update group', id);
+                            var newName = $('#editGroup input#name').val();
+                            var newUsers = $('#editGroup select.existingUsers').val();
+                            console.log({newName,newUsers})
+                            $.ajax({
+                                url: '/updateGroup/'+id,
+                                type: 'POST',
+                                data: {name: newName, prospects: newUsers},
+                                success: function() {
+                                    console.log('success')
+                                    $('button.close').click();
+                                    location.reload();
+                                }
+                            })
+                          })
+                          $('.deleteGroup').click(function() {
+                            console.log('delete', id);
+                            $.ajax({
+                                url: '/deleteGroup',
+                                type: 'DELETE',
+                                data: {id}
+                            })
+                            $('button.close').click();
+                            location.reload();
+                          })
                         })
                       })
 
@@ -480,6 +510,9 @@ $.getJSON("/myProspects", (data) =>{
                   $('.uploadButton').removeAttr('disabled')
                 })
               });
+
+
+
 </script>
 </body>
 </html>
