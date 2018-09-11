@@ -3,7 +3,22 @@ const path = require('path');
 const csvtojsonV2=require("csvtojson/v2");
 var mv = require('mv');
 const api = require('./models/api');
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
+const schedule = require('node-schedule');
+
+(api.Schedule).find({}, function(err, tasks) {
+    if (err) console.log(err)
+
+    tasks.forEach((task) => {
+        var date = new Date(task.date);
+        schedule.scheduleJob(date, function(){
+            console.log('execute task');
+        });
+
+    })
+})
 module.exports = function(app, passport) {
 
     // show the home page (will also have our login links)
@@ -226,6 +241,19 @@ module.exports = function(app, passport) {
         
       
   });
+
+
+  app.post('/sendEmail', function(req, res) {
+      console.log('send this email', req.body)
+    const msg = {
+        to: req.body.toAddress,
+        from: req.body.fromAddress,
+        subject: req.body.subject,
+        text: req.body.plainText,
+        html: req.body.emailBody,
+      };
+      sgMail.send(msg);
+  })
 
 
     // LOGOUT ==============================
