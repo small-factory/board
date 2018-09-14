@@ -78,6 +78,7 @@ module.exports = function(app, passport) {
             res.json(resp);
          })
     })
+    
 
     app.delete('/deleteBrokerage/:id', function(req,res) {
         (api.Brokerage).findByIdAndRemove(req.params.id, function (err, dist) {
