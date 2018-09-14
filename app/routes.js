@@ -8,17 +8,17 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const schedule = require('node-schedule');
 
-(api.Schedule).find({}, function(err, tasks) {
-    if (err) console.log(err)
+// (api.Schedule).find({}, function(err, tasks) {
+//     if (err) console.log(err)
 
-    tasks.forEach((task) => {
-        var date = new Date(task.date);
-        schedule.scheduleJob(date, function(){
-            console.log('execute task');
-        });
+//     tasks.forEach((task) => {
+//         var date = new Date(task.date);
+//         schedule.scheduleJob(date, function(){
+//             console.log('execute task');
+//         });
 
-    })
-})
+//     })
+// })
 module.exports = function(app, passport) {
 
     // show the home page (will also have our login links)
@@ -78,7 +78,7 @@ module.exports = function(app, passport) {
             res.json(resp);
          })
     })
-    
+
 
     app.delete('/deleteBrokerage/:id', function(req,res) {
         (api.Brokerage).findByIdAndRemove(req.params.id, function (err, dist) {
