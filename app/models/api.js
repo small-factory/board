@@ -45,10 +45,30 @@ var groupSchema = mongoose.Schema({
 }, { timestamps: true });
 const Group = mongoose.model('Group', groupSchema, 'groups');
 
+var actionSchema = mongoose.Schema({
+    type: String,
+    data: [],
+    owner: String,
+    email: String
+    
+}, { timestamps: true });
+const Action = mongoose.model('Action', actionSchema, 'actions');
+
+var campaignSchema = mongoose.Schema({
+    name: String,
+    steps: [],
+    owner: String,
+    email: String
+    
+}, { timestamps: true });
+const Campaign = mongoose.model('Campaign', campaignSchema, 'campaigns');
+
 
 module.exports = {
     Realtor,
     Brokerage,
     Prospect,
-    Group
+    Group,
+    Action,
+    Campaign
 }

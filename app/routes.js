@@ -214,6 +214,40 @@ module.exports = function(app, passport) {
     });
 
 
+    app.post('/addAction', isLoggedIn, function(req,res) {
+        req.body.owner = req.user._id;
+        req.body.email = req.user.local.email;
+        var newAction = new (api.Action)(req.body);
+        newAction.save(function(error, result) { 
+            if (error) {
+              console.log('err', error)
+            }
+            res.json({message: 'successful!'})
+            console.log(result);
+           });
+        console.log('got it', req.body)
+    })
+
+    app.post('/addCampaign', isLoggedIn, function(req,res) {
+        req.body.owner = req.user._id;
+        req.body.email = req.user.local.email;
+        var newCampaign = new (api.Campaign)(req.body);
+        newCampaign.save(function(error, result) { 
+            if (error) {
+              console.log('err', error)
+            }
+            res.json({message: 'successful!'})
+            console.log(result);
+           });
+    })
+
+    app.get('/myCampaigns', (req,res) => {
+        (api.Campaign).find({}, function(err, resp) {
+            if (err) console.log(err)
+            res.json(resp);
+        })
+    })
+
     // CSV UPLOAD
 
     

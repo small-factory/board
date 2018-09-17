@@ -94,19 +94,74 @@
             </div>
         </div>
         <div class="box-body" style="background: #fff;" >
-                view existing campaigns here
+            <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                <thead>
+                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 182.467px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                    Name</th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 225.017px;" aria-label="Browser: activate to sort column ascending">
+                        Steps</th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 198.733px;" aria-label="Platform(s): activate to sort column ascending">
+                            Date Added</th></tr>
+                </thead>
+                <tbody>
+                
+                        </tbody>
+                
+              </table>
         </div>
         
     </div>
     <button type="button" class="btn btn-lg btn-warning createNew">Create a new Campaign
-    </button>                                    
+    </button>   
+    <div class="stepDisplay"></div>                                 
     <div class="createCampaign">
-
+        
+    </div>
+    <div class="campaignControls">
+        
+        
     </div>
 </section>
                           
                        
 </div>
+
+<div class="modal fade" id="editCampaign">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background:#eeeeee; border-bottom:1px solid #cccccc;">
+            
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" style="font-size:150%">&times;</span></button>
+          <h3 class="modal-title modifyGroup">Edit Campaign</h3>
+        </div>
+        <div class="modal-body">
+          <p>
+<div class="row">       
+<div class="form-group col-md-12">
+<label for="name">name</label>
+<input class="form-control" id="campName" placeholder="Campaign Name" type="text">
+</div>
+</div> 
+<button class="button deleteGroup"><i class="fa fa-trash"></i> delete campaign</button>
+
+<br/><br/>
+<button class="button btn btn-info addProspects"><i class="fa fa-users"></i> Add prospects to campaign</button>
+<table>
+    <tbody class="prospectList">
+
+    </tbody>
+</table>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary updateGroup">Save changes</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+<button type="button" class="btn editCampaign" data-target="#editCampaign" data-toggle="modal" style="display:none;"> </button>
 
 <!-- ./wrapper -->
 
@@ -140,12 +195,58 @@
 
 <script>
         $(function () {
+
+$.getJSON("/myCampaigns", (data) =>{
+    data.forEach((campaign) => {
+        var steps = [];
+        (campaign.steps).forEach((step) => {
+            steps.push(step.type)
+        })
+        $('#example1 tbody').append(`<tr role="row" id="${campaign._id}">
+                            <td class="sorting_1 name">${campaign.name}</td>
+                            <td class="type">${(steps)}</td>
+                            <td class="subject">${campaign.createdAt}</td>                
+                            </tr>
+        `)
+
+    });
+
+    $('#example1').DataTable();
+    $('#example1 tbody tr').click(function() {
+            var campaignId = $(this).attr('id')
+                        var name = $(this).children('td.name').text();
+                        $('#campName').val(name);
+                        $('.editCampaign').click();
+                 
+
+        $('.addProspects').click(function() {
+            console.log('get prospects')
+            $.getJSON("/myProspects", (data) =>{
+                console.log(data);
+                    data.forEach((user) => {
+                        $('.prospectList').append(`<tr class="prospectRow" id="${user._id}">
+                        <td class="sorting_1 name">${user.firstName}</td>
+                        <td class="last">${user.lastName}</td>
+                        <td class="email">${user.email}</td>
+                        <td class="companyName">${user.companyName}</td>   
+                        <td class="phone">${user.phone}</td>  </tr>
+                                            `)
+                    })
+
+                    $('.prospectRow').click(function() {
+                        var userId = $(this).attr('id');
+                        console.log('campaignId', campaignId)
+                        window.location = "/kickoff/"+userId+"/"+campaignId;
+                    })
+                });
+        })
+
+           })
+});
+            var firststep = '';
             var steps = [];
             var stepNumber = 1;
-            $('.createNew').click(function() {
-                $(this).hide();
-                $('.createCampaign').html('')
-                $('.createCampaign').append(`
+            var actionType = `
                 <h3 class="stepNumber">Step ${stepNumber}</h3>
                 Please choose the next step:
                 <div class="cTypes">
@@ -153,12 +254,9 @@
                     <button type="button" class="btn sms">Text Message</button> 
                     <button type="button" class="btn delay">Delay</button>       
                 </div>
-                <div class="stepOne"></div>
-                `)
-
-                $('.email').click(function() {
-                    $(this).parent('.cTypes').hide();
-                    $('.stepOne').append(`
+                <div class="step"></div>
+                `;
+            var emailContentTemplate = `
                     <h4>Email</h4>
                     <p>
                         <div class="form-group" style="margin-left: 1%;">
@@ -177,62 +275,132 @@
                                 </form>
                                 </div>
                                 <button type="button" class="btn delay btn-info saveEmail">Save</button>
-                    </p>`)
-                    CKEDITOR.replace('editor1')
+                    </p>`;
+            $('.createNew').click(function() {
+                $(this).hide();
+                $('.createCampaign').html('')
+                $('.createCampaign').append(`<div class="form-group campName" style="margin-left: 1%;">
+                                    <label for="campaignName">Campaign Name</label>
+                                    <input class="form-control" id="campaignName" placeholder="Enter Campaign Name" type="text">
+                                    <button type="button" class="btn delay btn-info saveName">Save</button></div>
+                                    `);
+                $('.saveName').click(function() {
+                        $('.stepDisplay').append(`<br/><strong>Campaign Name: </strong><span class="campaignNameTitle">${$('#campaignName').val()}</span>`);
+                        $('.campaignControls').html('<br/><button type="button" class="btn delay btn-info btn-large saveCampaign">Save Campaign</button>')
+                        $('.campName').hide();
+                        
+                        $('.createCampaign').append(actionType)
+                        $('.email').click(function() {
+                            $('.saveCampaign').hide();
+                            $(this).parent('.cTypes').hide();
+                            $('.step').append(emailContentTemplate)
+                            CKEDITOR.replace('editor1')
+                            $('.saveEmail').click(function() {
+                                stepNumber++;
+                                var emailTemplateName = $('#emailTemplateName').val();
+                                var emailSubject = $('#emailSubject').val();
+                                var emailContent = CKEDITOR.instances.editor1.getData();
+
+                                if (stepNumber === 2) {
+                                     firststep = true;
+                                } else {
+                                     firststep = false
+                                }
+
+                                steps.push({type: 'email', data: {emailTemplateName, emailSubject, emailContent}, firststep});
+                                $('.step').html('');
+                                $('.cTypes').show();
+                                $(".stepNumber").html(`Step ${stepNumber}`);
+                                $('.stepDisplay').append(`<br/><strong>Step ${stepNumber-1}</strong> EMAIL`);
+                                
+                                // $.ajax({
+                                //     url: '/addAction',
+                                //     type: 'POST',
+                                //     data: {type: 'email', data: {emailTemplateName, emailSubject, emailContent, firststep}},
+                                //     success: function() {
+                                //         console.log('success')
+                                //         $('.saveCampaign').show();
+                                //     }
+                                // })
+                                $('.saveCampaign').show();
+                            })
+                        })
+                        $('.sms').click(function() {
+                            $(this).parent('.cTypes').hide();
+                            $('.stepOne').append(`
+                            <h4>SMS</h4>
+                            <p>
+                                            
+                                            <div class="form-group" style="margin-left: 1%;">
+                                                    <label for="template">SMSTemplate Name</label>
+                                                    <input class="form-control" id="template" placeholder="Enter Name" type="text">
+                                                    </div>
+                                            <div class="box-body pad">
+                                                    <form>
+                                                            <textarea id="sms2" name="sms2" rows="10" cols="80">
+                                                                Text message...
+                                                            </textarea>
+                                                    </form>
+                                                    </div>
+                                        </p>`)
+                        })
+                        $('.delay').click(function() {
+                            $('.saveCampaign').hide();
+                            var seconds = '';
+                            $(this).parent('.cTypes').hide();
+                            
+                            $('.step').append(`
+                            <h4>Delay</h4>
+                            <input type="text" class="form-control" id="duration">
+                            <button type="button" class="btn delay btn-info saveDelay">Save</button>`)
+                            $('#duration').durationPicker({
+                                onChanged: function (value, isInitializing) {
+                                    seconds = value
+                                }});
+                            $('.saveDelay').click(function() {
+                                stepNumber++;
+                                if (stepNumber === 2) {
+                                     firststep = true;
+                                } else {
+                                     firststep = false
+                                }
+                                steps.push({type: 'delay', data : {delay: seconds}, firststep});
+                                $('.step').html('');
+                                $('.cTypes').show();
+                                $(".stepNumber").html(`Step ${stepNumber}`);
+                                $('.stepDisplay').append(`<br/><strong>Step ${stepNumber-1}</strong> DELAY`);
 
 
-                    $('.saveEmail').click(function() {
-                        stepNumber++;
-                        var emailTemplateName = $('#emailTemplateName').val();
-                        var emailSubject = $('#emailSubject');
-                        var emailContent = CKEDITOR.instances.editor1.getData();
-                        steps.push({emailTemplateName, emailSubject, emailContent});
-                        console.log(steps);
-                        $('.stepOne').html('');
-                        $('.cTypes').show();
-                        $(".stepNumber").html(`Step ${stepNumber}`);
-                        $('.createCampaign').prepend(`<strong>Step ${stepNumber-1}</strong> EMAIL`);
-                        // $.ajax({
-                        //     url: '/addTemplate',
-                        //     type: 'POST',
-                        //     data: {name, subject, content, owner: 'ew6980'},
-                        //     success: function() {
-                        //         console.log('success')
-                        //         $('button.close').click();
-                        //         location.reload();
-                        //     }
-                        // })
-                    })
-                })
-                $('.sms').click(function() {
-                    $(this).parent('.cTypes').hide();
-                    $('.stepOne').append(`
-                    <h4>SMS</h4>
-                    <p>
-                                      
-                                      <div class="form-group" style="margin-left: 1%;">
-                                              <label for="template">SMSTemplate Name</label>
-                                              <input class="form-control" id="template" placeholder="Enter Name" type="text">
-                                              </div>
-                                      <div class="box-body pad">
-                                              <form>
-                                                      <textarea id="sms2" name="sms2" rows="10" cols="80">
-                                                          Text message...
-                                                      </textarea>
-                                              </form>
-                                              </div>
-                                  </p>`)
-                })
-                $('.delay').click(function() {
-                    $(this).parent('.cTypes').hide();
-                    $('.stepOne').append(`
-                    <h4>Delay</h4>
-                    <input type="text" class="form-control" id="duration">`)
-                    $('#duration').durationPicker();
+                                $('.saveCampaign').show();
+
+                            })
+                        })
+
+                        $('.campaignControls .saveCampaign').click(function() {
+                            $('.step').html('');
+                            if (steps.length < 1) {
+                                alert('no steps')
+                            } else {
+                                console.log('save this campaign', steps);
+                                var campaignObj = {
+                                    name: $('.campaignNameTitle').text(),
+                                    steps
+                                }
+                                $.ajax({
+                                    url: '/addCampaign',
+                                    type: 'POST',
+                                    data: campaignObj,
+                                    success: function() {
+                                        console.log('success')
+                                        $('.saveCampaign').show();
+                                        location.reload();
+                                    }
+                                })
+                            }
+                        })
 
                 })
-                
-            })
+            }) // end of create new click
          });
  </script>
 </body>
