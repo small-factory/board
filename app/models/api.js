@@ -59,8 +59,8 @@ var campaignSchema = mongoose.Schema({
     steps: [],
     owner: String,
     email: String
-    
 }, { timestamps: true });
+
 const Campaign = mongoose.model('Campaign', campaignSchema, 'campaigns');
 
 
