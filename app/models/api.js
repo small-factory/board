@@ -35,7 +35,18 @@ var projectSchema = mongoose.Schema({
 });
 const Project = mongoose.model('Project', projectSchema, 'projects');
 
+<<<<<<< HEAD
 
+=======
+var campaignSchema = mongoose.Schema({
+    name: String,
+    steps: [],
+    owner: String,
+    email: String
+    
+}, { timestamps: true });
+const Campaign = mongoose.model('Campaign', campaignSchema, 'campaigns');
+>>>>>>> parent of ef5b596... cleanup and adding to scheduling
 
 
 module.exports = {
