@@ -1,74 +1,44 @@
 const mongoose = require('mongoose');
 
 
-var realtorSchema = mongoose.Schema({
+var userSchema = mongoose.Schema({
     group: Number,
     local: {
         email: String,
-        password: String,
-        name: String,
-        phone: String,
-        brokerageId: String,
-        brokerageName: String
-    }
-    
-});
-const Realtor = mongoose.model('Realtor', realtorSchema, 'users');
-
-
-
-var brokerageSchema = mongoose.Schema({
+        password: String
+    },
     name: String,
-    email: String,
-    phone: String,
-    location: String
+    district: String
 });
-const Brokerage = mongoose.model('Brokerage', brokerageSchema, 'brokerages');
+const User1 = mongoose.model('User1', userSchema, 'users');
 
-var prospectSchema = mongoose.Schema({
-    firstName: String,
-    lastName: String,
-    email: String,
-    phone: String,
-    notes: String,
-    companyName: String,
-    realtorId: String,
-    realtorName: String
-}, { timestamps: true });
-const Prospect = mongoose.model('Prospect', prospectSchema, 'prospects');
 
-var groupSchema = mongoose.Schema({
+var projectSchema = mongoose.Schema({
+    id: Number,
+    category: String,
+    pointValue: Number,
     name: String,
-    prospects: [],
-    owner: String
-    
-}, { timestamps: true });
-const Group = mongoose.model('Group', groupSchema, 'groups');
-
-var actionSchema = mongoose.Schema({
+    image: String,
+    description: String,
+    file: String,
     type: String,
-    data: [],
-    owner: String,
-    email: String
-    
-}, { timestamps: true });
-const Action = mongoose.model('Action', actionSchema, 'actions');
+    size: Number,
+    categories: [],
+    science: Number,
+    technology: Number,
+    research: Number,
+    engineering: Number,
+    arts: Number,
+    mathematics: Number,
+    active: Number,
+    standards:  []
+});
+const Project = mongoose.model('Project', projectSchema, 'projects');
 
-var campaignSchema = mongoose.Schema({
-    name: String,
-    steps: [],
-    owner: String,
-    email: String
-}, { timestamps: true });
 
-const Campaign = mongoose.model('Campaign', campaignSchema, 'campaigns');
 
 
 module.exports = {
-    Realtor,
-    Brokerage,
-    Prospect,
-    Group,
-    Action,
-    Campaign
+    User1,
+    Project
 }

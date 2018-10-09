@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 
 app.use(express.static('public'))
 
-mongoose.connect('mongodb://bare:brick8@ds227322.mlab.com:27322/bare',{useMongoClient: true});
+mongoose.connect('mongodb://three:four44@ds251548.mlab.com:51548/hexboard',{useMongoClient: true});
 require('./config/passport')(passport); // pass passport for configuration
 
 

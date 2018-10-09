@@ -3,30 +3,18 @@ const path = require('path');
 const csvtojsonV2=require("csvtojson/v2");
 var mv = require('mv');
 const api = require('./models/api');
-const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+var bcrypt   = require('bcrypt-nodejs');
 
-const schedule = require('node-schedule');
+var generateHash = function(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
 
-// (api.Schedule).find({}, function(err, tasks) {
-//     if (err) console.log(err)
-
-//     tasks.forEach((task) => {
-//         var date = new Date(task.date);
-//         schedule.scheduleJob(date, function(){
-//             console.log('execute task');
-//         });
-
-//     })
-// })
 module.exports = function(app, passport) {
 
-    // show the home page (will also have our login links)
     app.get('/', function(req, res) {
         res.render('index.ejs');
     });
 
-    // PROFILE SECTION =========================
      app.get('/profile', isLoggedIn, function(req, res) {
          console.log(req.user.local.group)
         if (req.user.group === 1) {
@@ -34,9 +22,15 @@ module.exports = function(app, passport) {
                 user : req.user
             });
         } else if (req.user.group === 3) {
-            res.render('realtor.ejs', {
-                user : req.user
+            res.render('teacher.ejs', {
+                user : req.user,
+                name: req.user.name
             });
+        } else if (req.user.group === 5) {
+                res.render('student.ejs', {
+                    user : req.user,
+                    name: req.user.name
+                });
         } else {
             res.render('profile.ejs', {
                 user : req.user
@@ -45,161 +39,88 @@ module.exports = function(app, passport) {
         
     });
 
-
-    // ADMIN SECTION =========================
-    app.get('/admin/brokerage', isAdmin, function(req, res) {
-        res.render('admin/brokerage.ejs', {
-            user : req.user
-        });
-    })
-
-    app.post('/addBrokerage', isAdmin, function(req,res) {
-        console.log('add brokerage', req.body);
-        var newBrokerage = new (api.Brokerage)(req.body);
-        newBrokerage.save(function (err, results) {
-            if (err) console.log(err);
-            console.log(results);
-            res.json(results);
-        })
+    app.get('/create-board', isLoggedIn, function(req, res) {
+        if (req.user.group !== 1 && req.user.group !== 3) {
+            res.send('unauthorized');
+        } else {
+            res.render('create-board.ejs', {
+                user: req.user,
+                name: req.user.name
+            })
+        }
     });
 
-    app.get('/allBrokerages', function(req,res) {
-        (api.Brokerage).find({}, function(err, brokerages) {
-            if (err) console.log(err);
-            res.send(brokerages);
-        })
-    })
+    app.get('/boards', isLoggedIn, function(req, res) {
+        if (req.user.group !== 1 && req.user.group !== 3) {
+            res.send('unauthorized');
+        } else {
+            res.render('boards.ejs', {
+                user: req.user,
+                name: req.user.name
+            })
+        }
+    });
 
-    app.post('/updateBrokerage/:id', isAdmin, function(req,res) {
-        console.log('update this brokerage', req.body);
-        (api.Brokerage).findByIdAndUpdate(req.params.id, req.body, function (err, resp) {
-            if (err) console.log(err);
-            console.log(resp);
-            res.json(resp);
-         })
-    })
-
-
-    app.delete('/deleteBrokerage/:id', function(req,res) {
-        (api.Brokerage).findByIdAndRemove(req.params.id, function (err, dist) {
-            if (err) console.log(err);
-            res.send(dist);
-        })
-    })
-
-
-
-
-
-    app.get('/admin/realtors', isAdmin, function(req, res) {
-        res.render('admin/realtor.ejs', {
+    app.get('/admin/students', isAdmin, function(req, res) {
+        res.render('admin/students.ejs', {
             user : req.user
         });
     })
-    app.get('/allRealtors', function(req,res) {
-        (api.Realtor).find({group: 3}, function(err, teachers) {
+
+    
+
+    app.get('/admin/teachers', isAdmin, function(req, res) {
+        res.render('admin/teachers.ejs', {
+            user : req.user
+        });
+    })
+    
+    app.get('/allTeachers', function(req,res) {
+        (api.User1).find({group: 3}, function(err, teachers) {
             if (err) console.log(err);
             res.send(teachers);
         })
     })
 
-    app.post('/addRealtor', function(req, res) {
+    app.post('/addTeacher', function(req, res) {
         console.log(req.body);
-        var newRealtor = new (api.Realtor)(req.body);
-        newRealtor.save(function (err, results) {
+        var passwordHashed = req.body.local.password;
+        delete req.body.local.password
+        req.body.local.password = generateHash(passwordHashed);
+        var newTeacher = new (api.User1)(req.body);
+        newTeacher.save(function (err, results) {
             if (err) console.log(err);
             console.log(results);
             res.json(results);
         })
     })
 
-    app.post('/updateRealtor/:id', isAdmin, function(req,res) {
-        console.log('update this Realtor', req.body);
-        (api.Realtor).findByIdAndUpdate(req.params.id, req.body, function (err, resp) {
-            if (err) console.log(err);
-            console.log(resp);
-            res.json(resp);
-         })
-    })
-
-    app.delete('/deleteRealtor/:id', function(req,res) {
-        (api.Realtor).findByIdAndRemove(req.params.id, function (err, dist) {
-            if (err) console.log(err);
-            res.send(dist);
-        })
-    })
-
-
-    app.get('/users', isLoggedIn, function(req, res) {
-        res.render('users.ejs', {
-            user : req.user
-        });
-    });
-
-    app.get('/myProspects', isLoggedIn, function(req,res) {
-        //(api.Prospect).find({realtorId: req.user._id}, function(err, prospects) {
-        (api.Prospect).find({}, function(err, prospects) {
-            if (err) console.log(err);
-            res.send(prospects);
-        })
-    })
-
-    app.post('/addProspect', isLoggedIn, function(req, res) {
-        console.log(req.body);
-        var newProspect = new (api.Prospect)(req.body);
-        newProspect.save(function (err, results) {
+    app.post('/addStudent', function(req, res) {
+        var passwordHashed = req.body.local.password;
+        delete req.body.local.password
+        req.body.local.password = generateHash(passwordHashed);
+        var newStudent = new (api.User1)(req.body);
+        newStudent.save(function (err, results) {
             if (err) console.log(err);
             console.log(results);
             res.json(results);
         })
     })
-    app.get('/myGroups', (req,res) => {
-        (api.Group).find({}, function(err, resp) {
-            if (err) console.log(err)
-            console.log('groups', resp)
-            res.json(resp);
+
+    app.get('/allProjects', isLoggedIn, function(req,res) {
+        (api.Project).find({}, function(err, projects) {
+            if (err) console.log(err);
+            res.send(projects);
         })
     })
-    app.post('/addGroup', (req, res) => {
-        console.log(req.body);
-        req.body.owner = req.user._id
-        var newGroup = new (api.Group)(req.body);
-        newGroup.save(function(error, result) { 
-            if (error) {
-              console.log('err', error)
-            }
-            res.json({message: 'successful!'})
-            console.log(result);
-           });
-        console.log('got it', req.body)
-    })
-    app.post('/updateGroup/:id', (req, res) => {
-        (api.Group).findByIdAndUpdate(req.params.id,{$set:{name:req.body.name, prospects: req.body.prospects}},{new:true}, function(err, results) {
-            if (err) {
-                console.log('error', err)
-                res.status(400).json({err})
-            } else {
-                res.json(results);
-            }
-
-        })       
-    })
-    app.delete('/deleteGroup', (req,res) => {
-        console.log(req.body);
-        (api.Group).findByIdAndRemove({_id: req.body.id}, req.body, function(err,data) {
-            if(!err){
-                console.log("Deleted", data);
-            } else {
-                console.log('error', err)
-            }
-        });
+    
+    app.get('/allStudents', function(req,res) {
+        (api.User1).find({group: 5}, function(err, students) {
+            if (err) console.log(err);
+            res.send(students);
+        })
     })
 
-    app.get('/campaigns', isLoggedIn, function(req, res) {
-        res.render('campaigns.ejs', {
-            user : req.user
-        });
-    });
 
     app.get('/activity', isLoggedIn, function(req, res) {
         res.render('activity.ejs', {
@@ -214,41 +135,6 @@ module.exports = function(app, passport) {
     });
 
 
-    app.post('/addAction', isLoggedIn, function(req,res) {
-        req.body.owner = req.user._id;
-        req.body.email = req.user.local.email;
-        var newAction = new (api.Action)(req.body);
-        newAction.save(function(error, result) { 
-            if (error) {
-              console.log('err', error)
-            }
-            res.json({message: 'successful!'})
-            console.log(result);
-           });
-        console.log('got it', req.body)
-    })
-
-    app.post('/addCampaign', isLoggedIn, function(req,res) {
-        req.body.owner = req.user._id;
-        req.body.email = req.user.local.email;
-        var newCampaign = new (api.Campaign)(req.body);
-        newCampaign.save(function(error, result) { 
-            if (error) {
-              console.log('err', error)
-            }
-            res.json({message: 'successful!'})
-            console.log(result);
-           });
-    })
-
-    app.get('/myCampaigns', (req,res) => {
-        (api.Campaign).find({}, function(err, resp) {
-            if (err) console.log(err)
-            res.json(resp);
-        })
-    })
-
-    // CSV UPLOAD
 
     
   app.post('/uploadCsv', function(req, res) {
@@ -278,20 +164,7 @@ module.exports = function(app, passport) {
   });
 
 
-  app.post('/sendEmail', function(req, res) {
-      console.log('send this email', req.body)
-    const msg = {
-        to: req.body.toAddress,
-        from: req.body.fromAddress,
-        subject: req.body.subject,
-        text: req.body.plainText,
-        html: req.body.emailBody,
-      };
-      sgMail.send(msg);
-  })
-
-
-    // LOGOUT ==============================
+  
     app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
@@ -304,7 +177,7 @@ module.exports = function(app, passport) {
         // process the login form
         app.post('/login', passport.authenticate('local-login', {
             successRedirect : '/profile', // redirect to the secure profile section
-            failureRedirect : '/login', // redirect back to the signup page if there is an error
+            failureRedirect : '/', // redirect back to the signup page if there is an error
             failureFlash : true // allow flash messages
         }));
 
@@ -322,8 +195,8 @@ module.exports = function(app, passport) {
         }));
         // process the TEACHER signup
         app.post('/signupTeacher', passport.authenticate('local-signup', {
-            successRedirect : '/admin/createTeacher', // redirect to the secure profile section
-            failureRedirect : '/admin/createTeacher', // redirect back to the signup page if there is an error
+            successRedirect : '/admin/teachers', // redirect to the secure profile section
+            failureRedirect : '/admin/teachers', // redirect back to the signup page if there is an error
             failureFlash : true // allow flash messages
         }));
 
