@@ -67,6 +67,12 @@ module.exports = function(app, passport) {
         });
     })
 
+    app.get('/admin/boards', isAdmin, function(req, res) {
+        res.render('admin/boards.ejs', {
+            user : req.user
+        });
+    })
+
     
 
     app.get('/admin/teachers', isAdmin, function(req, res) {
