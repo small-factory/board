@@ -73,6 +73,12 @@ module.exports = function(app, passport) {
         });
     })
 
+    app.get('/build/:boardName', isAdmin, function(req, res) {
+        res.render('admin/createBoards.ejs', {
+            user : req.user
+        });
+    })
+
     
 
     app.get('/admin/teachers', isAdmin, function(req, res) {
@@ -345,7 +351,6 @@ module.exports = function(app, passport) {
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return next();
-
     res.redirect('/');
 }
 
