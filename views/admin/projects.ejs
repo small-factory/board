@@ -185,9 +185,9 @@ $(document).ready(function() {
 
   $.getJSON('/allProjects', function(projectData) {
       console.log(projectData);
-      projectData.forEach(function(student) {
+      projectData.forEach(function(project) {
         $('#example1 tbody').append(`
-                <tr id='${project._id}' class="studentRow">
+                <tr id='${project._id}' class="projectRow">
                     <td class="name">${project.name}</td>
                     <td class="email"></td>
                     <td class="district"></td>
@@ -196,28 +196,6 @@ $(document).ready(function() {
     })
   })
 
-  $('.addStudent').click(function() {
-      var name = $('input#name').val();
-      var email = $('input#email').val();
-      var password = $('input#passwordT').val();
-      console.log(password)
-        $.ajax({
-            url: "/addStudent",
-            method: "POST",
-            data: {
-                group: 5,
-                local: {
-                    email,
-                    password
-                },
-                name
-            },
-            success: function(res) {
-                console.log('respnse', res);
-                location.reload();
-            }
-        });
-  })
 
 
 
