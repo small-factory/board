@@ -100,12 +100,6 @@ module.exports = function(app, passport) {
         })
     })
 
-    app.get('/allProjects', function(req,res) {
-        (api.User1).find({group: 3}, function(err, teachers) {
-            if (err) console.log(err);
-            res.send(teachers);
-        })
-    })
     
 
     app.post('/addTeacher', function(req, res) {
