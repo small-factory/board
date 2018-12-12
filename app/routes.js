@@ -4,13 +4,16 @@ const csvtojsonV2=require("csvtojson/v2");
 var mv = require('mv');
 const api = require('./models/api');
 var bcrypt   = require('bcrypt-nodejs');
-
+const fileUpload = require('express-fileupload');
+var bodyParser   = require('body-parser');
 var generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
-module.exports = function(app, passport) {
 
+
+module.exports = function(app, passport) {
+    app.use(fileUpload());
     app.get('/', function(req, res) {
         res.render('index.ejs');
     });
@@ -100,7 +103,22 @@ module.exports = function(app, passport) {
         })
     })
 
-    
+    app.post('/admin/upload', bodyParser.urlencoded({ extended: false }), function(req, res) {
+            // if (Object.keys(req.files).length == 0) {
+            //   return res.status(400).send('No files were uploaded.');
+            // }
+            console.log(req.body);
+            // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+            let sampleFile = req.files.sampleFile;
+          
+            // Use the mv() method to place the file somewhere on your server
+            sampleFile.mv('/somewhere/on/your/server/filename.jpg', function(err) {
+              if (err)
+                return res.status(500).send(err);
+          
+              res.send('File uploaded!');
+            });
+    });
 
     app.post('/addTeacher', function(req, res) {
         console.log(req.body);
@@ -153,8 +171,37 @@ module.exports = function(app, passport) {
             user : req.user
         });
     });
+    app.post('/admin/deleteProject', function(req, res) {
+        console.log(req.body);
+        (api.Project).findByIdAndRemove(req.body.id, function(err, result) {
+            if (err) console.log(err);
+            console.log('res', result)
+            res.send(result)
+        })
+    })
+app.post('/admin/updateProject', function(req, res) {
+        console.log(req.body);
+        var idToUpdate = req.body.id;
+        var updateObj = req.body;
+        delete updateObj['id'];
+        console.log(req.body.id);
+        console.log(updateObj);
+        (api.Project).findByIdAndUpdate(idToUpdate, updateObj, function(err, result) {
+            if (err) console.log(err);
+            console.log('res', result)
+            res.send(result);
+        })
+    })
 
-
+    app.post('/admin/addProject', function(req, res) {
+        console.log(req.body);
+        var newProject = new (api.Project)(req.body);
+          newProject.save(function (err, results) {
+              if (err) console.log(err);
+              console.log(results);
+              res.json(results);
+          })
+    })
 
     
   app.post('/uploadCsv', function(req, res) {
