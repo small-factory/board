@@ -344,7 +344,8 @@ $(document).ready(function() {
         $('.updateProject').click(function() {
           //var baseImage = getBase64($('input#sampleFile')[0].files[0]);
           var file = document.querySelector('input#sampleFile').files[0];
-          getBase64(file).then(image => {
+          if (file) {
+            getBase64(file).then(image => {
             
               $.ajax({
                 url: "/admin/updateProject",
@@ -358,11 +359,27 @@ $(document).ready(function() {
                 },
                 success: function(res) {
                   console.log('response', res);
+                  location.reload();
                 }
             });
           });
           
-          
+          } else {
+            $.ajax({
+                url: "/admin/updateProject",
+                method: "POST",
+                data: {
+                  id,
+                  name: $('#updateName').val(),
+                  category: $('.updateCategories option:selected').val(),
+                  description: CKEDITOR.instances.editor1.getData()
+                },
+                success: function(res) {
+                  console.log('response', res);
+                  location.reload();
+                }
+            });
+          }
         })
 
 
@@ -377,6 +394,7 @@ $('.deleteProject').click(function() {
         },
         success: function(res) {
           console.log('response', res);
+          location.reload();
         }
     });
   })
@@ -395,15 +413,58 @@ $('.deleteProject').click(function() {
 $('.addProject').click(function() {
   console.log('add');
   var file = document.querySelector('input#newFile').files[0];
-  getBase64(file).then(image => {
+  
+  
+  if (file) {
+    getBase64(file).then(image => {
     console.log({
       name: $('input#name').val(),
       points: $('input#points').val(),
       category: $('select#categories').val(),
       image,
       description: CKEDITOR.instances.addDescription.getData(),
-    })
+    });
+    $.ajax({
+        url: "/admin/addProject",
+        method: "POST",
+        data: {
+      name: $('input#name').val(),
+      points: $('input#points').val(),
+      category: $('select#categories').val(),
+      image,
+      description: CKEDITOR.instances.addDescription.getData(),
+
+        },
+        success: function(res) {
+          console.log('response', res);
+          location.reload();
+        }
+    });
   })
+  } else {
+    console.log({
+      name: $('input#name').val(),
+      points: $('input#points').val(),
+      category: $('select#categories').val(),
+      description: CKEDITOR.instances.addDescription.getData(),
+    })
+    $.ajax({
+        url: "/admin/addProject",
+        method: "POST",
+        data: {
+      name: $('input#name').val(),
+      points: $('input#points').val(),
+      category: $('select#categories').val(),
+      description: CKEDITOR.instances.addDescription.getData(),
+
+        },
+        success: function(res) {
+          console.log('response', res);
+          location.reload();
+        }
+    });
+  }
+
 })
 
 

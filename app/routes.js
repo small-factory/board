@@ -83,9 +83,14 @@ module.exports = function(app, passport) {
     })
 
     app.get('/build/:boardName', isAdmin, function(req, res) {
-        res.render('admin/createBoards.ejs', {
-            user : req.user
-        });
+        (api.Project).find({}, function(err, projects) {
+            if (err) console.log(err);
+            res.render('admin/createBoard.ejs', {
+                user : req.user,
+                projects
+            });
+        })
+        
     })
 
     
@@ -204,6 +209,7 @@ app.post('/admin/updateProject', function(req, res) {
     })
 
     
+
   app.post('/uploadCsv', function(req, res) {
     if (!req.files)
       return res.status(400).send('No files were uploaded.');
